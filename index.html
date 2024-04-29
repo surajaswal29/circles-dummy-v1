@@ -9,142 +9,137 @@
 
 <h1>Rust Programming Guide</h1>
 
-<p>Welcome to this Rust Programming Guide, designed for beginners looking to understand the fundamentals of Rust programming. Below you will find a detailed explanation of key topics along with practical examples.</p>
+<h2>Contents</h2>
 
-<h2 id="variables-and-mutability">Variables and Mutability</h2>
+<h3>Basic Topics</h3>
+<ol>
+  <li><a href="#variables-and-mutability">Variables and Mutability</a></li>
+  <li><a href="#functions">Functions</a></li>
+  <li><a href="#loops">Loops</a></li>
+  <li><a href="#control-statements">Control Statements</a></li>
+  <li><a href="#structs-similar-to-classes-in-oop">Structs (Similar to Classes in OOP)</a></li>
+  <li><a href="#operators">Operators</a></li>
+</ol>
 
-<p>In Rust, variables are immutable by default. Use the <code>mut</code> keyword to make them mutable.</p>
+<h3>Intermediate Topics</h3>
+<ol>
+  <li><a href="#error-handling">Error Handling</a>
+    <ul>
+      <li><code>Result</code> and <code>Option</code> types</li>
+      <li>Custom error types</li>
+    </ul>
+  </li>
+  <li><a href="#testing">Testing</a>
+    <ul>
+      <li>Unit tests</li>
+      <li>Integration tests</li>
+      <li>Test-driven development (TDD)</li>
+    </ul>
+  </li>
+  <li><a href="#traits-and-generics">Traits and Generics</a>
+    <ul>
+      <li>Defining and implementing traits</li>
+      <li>Generic types and functions</li>
+      <li>Trait bounds</li>
+    </ul>
+  </li>
+  <li><a href="#concurrency">Concurrency</a>
+    <ul>
+      <li>Threads and <code>std::thread</code></li>
+      <li>Message passing with channels</li>
+      <li>Atomic operations</li>
+    </ul>
+  </li>
+  <li><a href="#smart-pointers-and-ownership">Smart Pointers and Ownership</a>
+    <ul>
+      <li><code>Box</code>, <code>Rc</code>, <code>Arc</code></li>
+      <li><code>RefCell</code> and <code>Mutex</code></li>
+      <li>Understanding <code>Deref</code> and <code>Drop</code></li>
+    </ul>
+  </li>
+  <li><a href="#collections-and-iterators">Collections and Iterators</a>
+    <ul>
+      <li>Advanced use of collections</li>
+      <li>Custom iterators</li>
+      <li>Functional programming techniques</li>
+    </ul>
+  </li>
+  <li><a href="#macros">Macros</a>
+    <ul>
+      <li>Declarative macros (<code>macro_rules!</code>)</li>
+      <li>Procedural macros</li>
+    </ul>
+  </li>
+  <li><a href="#modules-and-packages">Modules and Packages</a>
+    <ul>
+      <li>Code organization with modules</li>
+      <li>Managing large projects</li>
+      <li>Visibility and re-exporting</li>
+    </ul>
+  </li>
+</ol>
 
-<h3>Example</h3>
+<h3>Advanced Topics</h3>
+<ol>
+  <li><a href="#asynchronous-programming">Asynchronous Programming</a>
+    <ul>
+      <li><code>async</code> and <code>await</code></li>
+      <li>Asynchronous I/O applications</li>
+      <li>Async runtimes like <code>tokio</code> and <code>async-std</code></li>
+    </ul>
+  </li>
+  <li><a href="#advanced-type-system-features">Advanced Type System Features</a>
+    <ul>
+      <li>Lifetimes and lifetime elision</li>
+      <li>Variance and coherence</li>
+      <li>Advanced traits and associated types</li>
+    </ul>
+  </li>
+  <li><a href="#foreign-function-interface-ffi">Foreign Function Interface (FFI)</a>
+    <ul>
+      <li>Interfacing with C</li>
+      <li>Using <code>unsafe</code> code</li>
+      <li>Resource management across languages</li>
+    </ul>
+  </li>
+  <li><a href="#compiler-plugins-and-custom-derives">Compiler Plugins and Custom Derives</a>
+    <ul>
+      <li>Creating compiler plugins</li>
+      <li>Writing custom derive macros</li>
+    </ul>
+  </li>
+  <li><a href="#webassembly">WebAssembly</a>
+    <ul>
+      <li>Compiling to WebAssembly</li>
+      <li>Integrating with web applications</li>
+    </ul>
+  </li>
+  <li><a href="#embedded-systems-programming">Embedded Systems Programming</a>
+    <ul>
+      <li>Software for embedded systems</li>
+      <li>Cross-compiling and hardware interaction</li>
+    </ul>
+  </li>
+  <li><a href="#advanced-concurrency-and-parallelism">Advanced Concurrency and Parallelism</a>
+    <ul>
+      <li>Lock-free programming</li>
+      <li>Advanced concurrency models</li>
+    </ul>
+  </li>
+  <li><a href="#performance-optimization">Performance Optimization</a>
+    <ul>
+      <li>Profiling and benchmarking</li>
+      <li>Performance tuning</li>
+    </ul>
+  </li>
+  <li><a href="#domain-specific-languages-dsls">Domain-Specific Languages (DSLs)</a>
+    <ul>
+      <li>Design and implementation of DSLs</li>
+    </ul>
+  </li>
+</ol>
 
-<pre><code class="language-rust">fn main() {
-    let x = 5; // immutable
-    let mut y = 10; // mutable
-    println!("x is {}", x);
-    y = 15;
-    println!("y is now {}", y);
-}
-</code></pre>
-
-<h2 id="functions">Functions</h2>
-
-<p>Functions in Rust are defined using the <code>fn</code> keyword. Rust functions can also be associated with data types (similar to methods in OOP).</p>
-
-<h3>Example</h3>
-
-<pre><code class="language-rust">fn main() {
-    println!("5 + 3 = {}", add(5, 3));
-}
-
-fn add(x: i32, y: i32) -&gt; i32 {
-    x + y
-}
-</code></pre>
-
-<h2 id="loops">Loops</h2>
-
-<p>Rust provides several looping constructs: <code>loop</code>, <code>while</code>, and <code>for</code>.</p>
-
-<h3>Example</h3>
-
-<pre><code class="language-rust">fn main() {
-    let mut count = 0;
-    
-    // Using 'loop'
-    loop {
-        if count &gt;= 5 {
-            break;
-        }
-        println!("count = {}", count);
-        count += 1;
-    }
-
-    // Using 'while'
-    while count &lt; 10 {
-        println!("count = {}", count);
-        count += 1;
-    }
-
-    // Using 'for' and a range
-    for number in 0..5 {
-        println!("number = {}", number);
-    }
-}
-</code></pre>
-
-<h2 id="control-statements">Control Statements</h2>
-
-<p>Control statements in Rust include <code>if</code>, <code>else</code>, and <code>match</code> (akin to <code>switch</code> in other languages).</p>
-
-<h3>Example</h3>
-
-<pre><code class="language-rust">fn main() {
-    let number = 7;
-
-    // Using if-else
-    if number &lt; 5 {
-        println!("condition was true");
-    } else {
-        println!("condition was false");
-    }
-
-    // Using match
-    match number {
-        0 =&gt; println!("zero"),
-        1 =&gt; println!("one"),
-        _ =&gt; println!("something else"), // _ is the default case
-    }
-}
-</code></pre>
-
-<h2 id="structs-similar-to-classes-in-oop">Structs (Similar to Classes in OOP)</h2>
-
-<p>Rust uses structs to create custom data types. While Rust doesn't have classes, structs are used along with <code>impl</code> blocks to organize associated functions (methods).</p>
-
-<h3>Example</h3>
-
-<pre><code class="language-rust">struct Point {
-    x: f64,
-    y: f64,
-}
-
-impl Point {
-    fn distance(&amp;self) -&gt; f64 {
-        (self.x.powi(2) + self.y.powi(2)).sqrt()
-    }
-}
-
-fn main() {
-    let point = Point { x: 3.0, y: 4.0 };
-    println!("Distance from origin: {}", point.distance());
-}
-</code></pre>
-
-<h2 id="operators">Operators</h2>
-
-<p>Rust supports a variety of operators, such as arithmetic (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>), logical (<code>&amp;&amp;</code>, <code>||</code>, <code>!</code>), comparison (<code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>), and more.</p>
-
-<h3>Example</h3>
-
-<pre><code class="language-rust">fn main() {
-    let a = 5;
-    let b = 3;
-
-    // Arithmetic operators
-    println!("{} + {} = {}", a, b, a + b);
-    println!("{} - {} = {}", a, b, a - b);
-
-    // Logical operators
-    let x = true;
-    let y = false;
-    println!("x &amp;&amp; y is {}", x &amp;&amp; y);
-    println!("x || y is {}", x || y);
-
-    // Comparison operators
-    println!("a == b is {}", a == b);
-    println!("a != b is {}", a != b);
-}
-</code></pre>
+<p>This comprehensive guide provides a pathway through the foundational, intermediate, and advanced aspects of Rust programming. Each section is designed to build upon the previous, allowing a gradual and thorough exploration of Rust's capabilities.</p>
 
 </body>
 </html>
