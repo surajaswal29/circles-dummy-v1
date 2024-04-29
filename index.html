@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rust Programming Guide</title>
+</head>
+<body>
+
+<h1>Rust Programming Guide</h1>
+
+<p>Welcome to this Rust Programming Guide, designed for beginners looking to understand the fundamentals of Rust programming. Below you will find a detailed explanation of key topics along with practical examples.</p>
+
+<h2 id="variables-and-mutability">Variables and Mutability</h2>
+
+<p>In Rust, variables are immutable by default. Use the <code>mut</code> keyword to make them mutable.</p>
+
+<h3>Example</h3>
+
+<pre><code class="language-rust">fn main() {
+    let x = 5; // immutable
+    let mut y = 10; // mutable
+    println!("x is {}", x);
+    y = 15;
+    println!("y is now {}", y);
+}
+</code></pre>
+
+<h2 id="functions">Functions</h2>
+
+<p>Functions in Rust are defined using the <code>fn</code> keyword. Rust functions can also be associated with data types (similar to methods in OOP).</p>
+
+<h3>Example</h3>
+
+<pre><code class="language-rust">fn main() {
+    println!("5 + 3 = {}", add(5, 3));
+}
+
+fn add(x: i32, y: i32) -&gt; i32 {
+    x + y
+}
+</code></pre>
+
+<h2 id="loops">Loops</h2>
+
+<p>Rust provides several looping constructs: <code>loop</code>, <code>while</code>, and <code>for</code>.</p>
+
+<h3>Example</h3>
+
+<pre><code class="language-rust">fn main() {
+    let mut count = 0;
+    
+    // Using 'loop'
+    loop {
+        if count &gt;= 5 {
+            break;
+        }
+        println!("count = {}", count);
+        count += 1;
+    }
+
+    // Using 'while'
+    while count &lt; 10 {
+        println!("count = {}", count);
+        count += 1;
+    }
+
+    // Using 'for' and a range
+    for number in 0..5 {
+        println!("number = {}", number);
+    }
+}
+</code></pre>
+
+<h2 id="control-statements">Control Statements</h2>
+
+<p>Control statements in Rust include <code>if</code>, <code>else</code>, and <code>match</code> (akin to <code>switch</code> in other languages).</p>
+
+<h3>Example</h3>
+
+<pre><code class="language-rust">fn main() {
+    let number = 7;
+
+    // Using if-else
+    if number &lt; 5 {
+        println!("condition was true");
+    } else {
+        println!("condition was false");
+    }
+
+    // Using match
+    match number {
+        0 =&gt; println!("zero"),
+        1 =&gt; println!("one"),
+        _ =&gt; println!("something else"), // _ is the default case
+    }
+}
+</code></pre>
+
+<h2 id="structs-similar-to-classes-in-oop">Structs (Similar to Classes in OOP)</h2>
+
+<p>Rust uses structs to create custom data types. While Rust doesn't have classes, structs are used along with <code>impl</code> blocks to organize associated functions (methods).</p>
+
+<h3>Example</h3>
+
+<pre><code class="language-rust">struct Point {
+    x: f64,
+    y: f64,
+}
+
+impl Point {
+    fn distance(&amp;self) -&gt; f64 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
+}
+
+fn main() {
+    let point = Point { x: 3.0, y: 4.0 };
+    println!("Distance from origin: {}", point.distance());
+}
+</code></pre>
+
+<h2 id="operators">Operators</h2>
+
+<p>Rust supports a variety of operators, such as arithmetic (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>), logical (<code>&amp;&amp;</code>, <code>||</code>, <code>!</code>), comparison (<code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>), and more.</p>
+
+<h3>Example</h3>
+
+<pre><code class="language-rust">fn main() {
+    let a = 5;
+    let b = 3;
+
+    // Arithmetic operators
+    println!("{} + {} = {}", a, b, a + b);
+    println!("{} - {} = {}", a, b, a - b);
+
+    // Logical operators
+    let x = true;
+    let y = false;
+    println!("x &amp;&amp; y is {}", x &amp;&amp; y);
+    println!("x || y is {}", x || y);
+
+    // Comparison operators
+    println!("a == b is {}", a == b);
+    println!("a != b is {}", a != b);
+}
+</code></pre>
+
+</body>
+</html>
