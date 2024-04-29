@@ -1,59 +1,154 @@
-# suraj_nft
+# Rust Programming Guide
 
-Welcome to your new suraj_nft project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+Welcome to this Rust Programming Guide, designed for beginners looking to understand the fundamentals of Rust programming. Below you will find a detailed explanation of key topics along with practical examples.
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+## Contents
 
-To learn more before you start working with suraj_nft, see the following documentation available online:
+1. [Variables and Mutability](#variables-and-mutability)
+2. [Functions](#functions)
+3. [Loops](#loops)
+4. [Control Statements](#control-statements)
+5. [Structs (Similar to Classes in OOP)](#structs-similar-to-classes-in-oop)
+6. [Operators](#operators)
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Motoko Programming Language Guide](https://internetcomputer.org/docs/current/motoko/main/motoko)
-- [Motoko Language Quick Reference](https://internetcomputer.org/docs/current/motoko/main/language-manual)
+---
 
-If you want to start working on your project right away, you might want to try the following commands:
+## Variables and Mutability
 
-```bash
-cd suraj_nft/
-dfx help
-dfx canister --help
+In Rust, variables are immutable by default. Use the `mut` keyword to make them mutable.
+
+### Example
+
+```rust
+fn main() {
+    let x = 5; // immutable
+    let mut y = 10; // mutable
+    println!("x is {}", x);
+    y = 15;
+    println!("y is now {}", y);
+}
+```
+## Functions
+
+Functions in Rust are defined using the `fn` keyword. Rust functions can also be associated with data types (similar to methods in OOP).
+
+### Example
+
+```rust
+fn main() {
+    println!("5 + 3 = {}", add(5, 3));
+}
+
+fn add(x: i32, y: i32) -> i32 {
+    x + y
+}
 ```
 
-## Running the project locally
+## Loops
 
-If you want to test your project locally, you can use the following commands:
+Rust provides several looping constructs: `loop`, `while`, and `for`.
 
-```bash
-# Starts the replica, running in the background
-dfx start --background
+### Example
 
-# Deploys your canisters to the replica and generates your candid interface
-dfx deploy
+```rust
+fn main() {
+    let mut count = 0;
+    
+    // Using 'loop'
+    loop {
+        if count >= 5 {
+            break;
+        }
+        println!("count = {}", count);
+        count += 1;
+    }
+
+    // Using 'while'
+    while count < 10 {
+        println!("count = {}", count);
+        count += 1;
+    }
+
+    // Using 'for' and a range
+    for number in 0..5 {
+        println!("number = {}", number);
+    }
+}
 ```
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
+## Control Statements
 
-If you have made changes to your backend canister, you can generate a new candid interface with
+Control statements in Rust include `if`, `else`, and `match` (akin to `switch` in other languages).
 
-```bash
-npm run generate
+### Example
+
+```rust
+fn main() {
+    let number = 7;
+
+    // Using if-else
+    if number < 5 {
+        println!("condition was true");
+    } else {
+        println!("condition was false");
+    }
+
+    // Using match
+    match number {
+        0 => println!("zero"),
+        1 => println!("one"),
+        _ => println!("something else"), // _ is the default case
+    }
+}
 ```
 
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
+## Structs (Similar to Classes in OOP)
 
-If you are making frontend changes, you can start a development server with
+Rust uses structs to create custom data types. While Rust doesn't have classes, structs are used along with `impl` blocks to organize associated functions (methods).
 
-```bash
-npm start
+### Example
+
+```rust
+struct Point {
+    x: f64,
+    y: f64,
+}
+
+impl Point {
+    fn distance(&self) -> f64 {
+        (self.x.powi(2) + self.y.powi(2)).sqrt()
+    }
+}
+
+fn main() {
+    let point = Point { x: 3.0, y: 4.0 };
+    println!("Distance from origin: {}", point.distance());
+}
 ```
 
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
+## Operators
 
-### Note on frontend environment variables
+Rust supports a variety of operators, such as arithmetic (`+`, `-`, `*`, `/`, `%`), logical (`&&`, `||`, `!`), comparison (`==`, `!=`, `<`, `>`, `<=`, `>=`), and more.
 
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
+### Example
 
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
+```rust
+fn main() {
+    let a = 5;
+    let b = 3;
+
+    // Arithmetic operators
+    println!("{} + {} = {}", a, b, a + b);
+    println!("{} - {} = {}", a, b, a - b);
+
+    // Logical operators
+    let x = true;
+    let y = false;
+    println!("x && y is {}", x && y);
+    println!("x || y is {}", x || y);
+
+    // Comparison operators
+    println!("a == b is {}", a == b);
+    println!("a != b is {}", a != b);
+}
+```
