@@ -1,132 +1,136 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circles - Your Dashboard</title>
-
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-
+    
     <!-- Google Fonts (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    
     <!-- Custom Tailwind Configuration -->
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'circles-primary': '#3E6FF4',
-                        'circles-secondary': '#E3DCD2',
-                        'circles-bg': '#F8F9FA',
-                        'circles-surface': '#FFFFFF',
-                        'circles-text-primary': '#1C1C1E',
-                        'circles-text-secondary': '#6B7280',
-                        'circles-accent': '#47A76A',
-                        'circles-muted': '#9CA3AF',
-                    },
-                    animation: {
-                        // Fade-in animation for page load
-                        'fade-in': 'fade-in 0.5s ease-out forwards',
-                        'modal-fade-in': 'fade-in 0.2s ease-out forwards',
-                    },
-                    keyframes: {
-                        'fade-in': {
-                            '0%': { opacity: '0', transform: 'translateY(10px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                    }
-                }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'circles-primary': '#3E6FF4',
+              'circles-secondary': '#E3DCD2',
+              'circles-bg': '#F8F9FA',
+              'circles-surface': '#FFFFFF',
+              'circles-text-primary': '#1C1C1E',
+              'circles-text-secondary': '#6B7280',
+              'circles-accent': '#47A76A',
+              'circles-muted': '#9CA3AF',
+            },
+            animation: {
+              // Fade-in animation for page load
+              'fade-in': 'fade-in 0.5s ease-out forwards',
+              'modal-fade-in': 'fade-in 0.2s ease-out forwards',
+              'slide-in-left': 'slide-in-left 0.3s ease-out forwards',
+              'slide-out-left': 'slide-out-left 0.3s ease-in forwards',
+              'toast-in': 'toast-in 0.3s ease-out forwards',
+              'toast-out': 'toast-out 0.3s ease-in forwards',
+            },
+            keyframes: {
+              'fade-in': {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              'slide-in-left': {
+                '0%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(0)' },
+              },
+              'slide-out-left': {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-100%)' },
+              },
+              'toast-in': {
+                '0%': { opacity: '0', transform: 'translateY(20px) translateX(-50%)' },
+                '100%': { opacity: '1', transform: 'translateY(0) translateX(-50%)' },
+              },
+              'toast-out': {
+                '0%': { opacity: '1', transform: 'translateY(0) translateX(-50%)' },
+                '100%': { opacity: '0', transform: 'translateY(20px) translateX(-50%)' },
+              }
             }
+          }
         }
+      }
     </script>
 </head>
-
 <body class="font-sans bg-circles-bg text-circles-text-primary antialiased">
 
     <div class="flex h-screen overflow-hidden bg-circles-bg">
-
-        <!-- 2. Sidebar (Left-aligned, collapsible) -->
-        <!-- ... (Sidebar code remains unchanged) ... -->
-        <aside class="hidden md:flex w-64 flex-col h-full bg-circles-surface border-r border-gray-100 p-5 z-10">
+        
+        <!-- 2. Desktop Sidebar (Left-aligned, collapsible) -->
+        <aside id="desktopSidebar" class="hidden md:flex w-64 flex-col h-full bg-circles-surface border-r border-gray-100 p-5 z-10">
             <!-- Logo -->
             <div class="text-2xl font-bold text-circles-text-primary h-10 flex items-center px-2 mb-6">
                 Circles
             </div>
-
+            
             <!-- Nav Links -->
-            <nav class="flex-1 space-y-1">
-                <a href="#"
-                    class="bg-circles-primary/10 text-circles-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6-4a1 1 0 001-1v-1a1 1 0 10-2 0v1a1 1 0 001 1z">
-                        </path>
-                    </svg>
+            <nav class="space-y-1" id="sidebarNav">
+                <a href="#" class="sidebar-link bg-circles-primary/10 text-circles-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6-4a1 1 0 001-1v-1a1 1 0 10-2 0v1a1 1 0 001 1z"></path></svg>
                     <span>Home</span>
                 </a>
-                <a href="#"
-                    class="text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
-                        </path>
-                    </svg>
-                    <span>My Circles</span>
-                </a>
-                <a href="#"
-                    class="text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.657-3.343l.707-.707m12.728 0l.707.707M12 6a6 6 0 100 12 6 6 0 000-12z">
-                        </path>
-                    </svg>
+                <a href="#" class="sidebar-link text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.657-3.343l.707-.707m12.728 0l.707.707M12 6a6 6 0 100 12 6 6 0 000-12z"></path></svg>
                     <span>AI Reflections</span>
                 </a>
-                <a href="#"
-                    class="text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253">
-                        </path>
-                    </svg>
+                <a href="#" class="sidebar-link text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"></path></svg>
                     <span>Library</span>
                 </a>
-                <a href="#"
-                    class="text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                            </M10.325 4.317z">
-                        </path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
+                <a href="#" class="sidebar-link text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></M10.325 4.317z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     <span>Settings</span>
                 </a>
             </nav>
 
+            <!-- My Circles list in Sidebar -->
+            <div class="mt-6 flex-1 flex flex-col overflow-y-auto" id="sidebarCircles">
+                <h3 class="px-3 text-xs font-semibold text-circles-muted uppercase tracking-wider mb-2">My Circles</h3>
+                <div class="space-y-1">
+                    <!-- Circle Link 1 -->
+                    <a href="#" class="sidebar-link flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 group">
+                        <span class="w-8 h-8 rounded-full bg-circles-accent/10 flex items-center justify-center text-sm flex-shrink-0">🎨</span>
+                        <span class="text-sm font-medium text-circles-text-secondary group-hover:text-circles-text-primary truncate">#design-team</span>
+                        <span class="text-xs font-medium text-circles-accent bg-circles-accent/10 px-2 py-0.5 rounded-full ml-auto">3</span>
+                    </a>
+                    <!-- Circle Link 2 -->
+                    <a href="#" class="sidebar-link flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 group">
+                        <span class="w-8 h-8 rounded-full bg-circles-primary/10 flex items-center justify-center text-sm flex-shrink-0">🧘</span>
+                        <span class="text-sm font-medium text-circles-text-secondary group-hover:text-circles-text-primary truncate">#wellness-group</span>
+                    </a>
+                    <!-- Circle Link 3 -->
+                    <a href="#" class="sidebar-link flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 group">
+                        <span class="w-8 h-8 rounded-full bg-circles-secondary/40 flex items-center justify-center text-sm flex-shrink-0">📚</span>
+                        <span class="text-sm font-medium text-circles-text-secondary group-hover:text-circles-text-primary truncate">#book-club</span>
+                        <span class="text-xs font-medium text-circles-accent bg-circles-accent/10 px-2 py-0.5 rounded-full ml-auto">1</span>
+                    </a>
+                    <!-- Circle Link 4 -->
+                    <a href="#" class="sidebar-link flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 group">
+                        <span class="w-8 h-8 rounded-full bg-red-500/10 flex items-center justify-center text-sm flex-shrink-0">🚀</span>
+                        <span class="text-sm font-medium text-circles-text-secondary group-hover:text-circles-text-primary truncate">#product-launch</span>
+                    </a>
+                </div>
+            </div>
+            
             <!-- Bottom Button -->
-            <div class="mt-auto">
-                <button id="newCircleSidebarButton"
-                    class="w-full bg-circles-primary text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-in-out hover:bg-blue-700 hover:shadow-md flex items-center justify-center space-x-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
+            <div class="mt-auto pt-4">
+                <button id="newCircleSidebarButton" class="w-full bg-circles-primary text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-in-out hover:bg-blue-700 hover:shadow-md flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
                     <span>New Circle</span>
                 </button>
             </div>
@@ -134,452 +138,393 @@
 
         <!-- 3. Main Content Area (Scrollable) -->
         <div class="flex-1 flex flex-col h-screen overflow-y-auto animate-fade-in">
-
+            
             <!-- 1. Top Navbar (Inside Main Area) -->
-            <!-- ... (Top Navbar code remains unchanged) ... -->
             <header class="sticky top-0 w-full bg-circles-bg/90 backdrop-blur-md z-20 border-b border-gray-100">
                 <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-4 flex justify-between items-center">
-
+                    
                     <!-- Mobile Hamburger Menu Button -->
                     <div class="md:hidden">
-                        <button class="text-circles-text-secondary p-2 -ml-2">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h16M4 18h16"></path>
-                            </svg>
+                        <button id="mobileMenuButton" class="text-circles-text-secondary p-2 -ml-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                         </button>
                     </div>
 
-                    <!-- Search Bar -->
+                    <!-- Search Bar (Now triggers Command Palette) -->
                     <div class="hidden md:block w-full max-w-sm lg:max-w-md">
-                        <div class="relative">
-                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                <svg class="w-5 h-5 text-circles-muted" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                            </span>
-                            <input type="search" placeholder="Search your circles..."
-                                class="w-full pl-10 pr-4 py-2.5 rounded-lg bg-gray-100 border border-transparent focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200" />
-                        </div>
+                        <button id="searchBar" class="w-full text-left">
+                            <div class="relative pointer-events-none">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <svg class="w-5 h-5 text-circles-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                                </span>
+                                <span class="w-full block pl-10 pr-4 py-2.5 rounded-lg bg-gray-100 border border-transparent text-circles-text-secondary">Search your circles...</span>
+                                <span class="absolute inset-y-0 right-0 flex items-center pr-3">
+                                    <kbd class="inline-flex items-center px-2 py-0.5 rounded text-xs font-sans font-medium text-circles-muted bg-white border border-gray-200">⌘K</kbd>
+                                </span>
+                            </div>
+                        </button>
                     </div>
 
                     <!-- Right Side Icons -->
-                    <div class="flex items-center space-x-3 sm:space-x-5">
-                        <button
-                            class="text-circles-muted hover:text-circles-text-primary p-1 transition-colors duration-200">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
-                                </path>
-                            </svg>
+                    <div class="flex items-center space-x-3 sm:space-x-5 relative">
+                        <button id="notificationsButton" class="text-circles-muted hover:text-circles-text-primary p-1 transition-colors duration-200 relative">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                            <!-- Notification dot -->
+                            <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-circles-primary rounded-full border-2 border-circles-bg"></span>
                         </button>
-                        <button
-                            class="text-circles-muted hover:text-circles-text-primary p-1 transition-colors duration-200">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
-                                    </M10.325 4.317z">
-                                </path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
+                        <button class="text-circles-muted hover:text-circles-text-primary p-1 transition-colors duration-200">
+                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></M10.325 4.317z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </button>
-                        <button class="block">
-                            <img class="w-9 h-9 rounded-full border-2 border-circles-primary/30 object-cover"
-                                src="https://placehold.co/100x100/E3DCD2/1C1C1E?text=S" alt="Suraj">
+                        <button id="profileButton" class="block">
+                            <img class="w-9 h-9 rounded-full border-2 border-circles-primary/30 object-cover" src="https://placehold.co/100x100/E3DCD2/1C1C1E?text=S" alt="Suraj">
                         </button>
+
+                        <!-- Notifications Popover -->
+                        <div id="notificationsPopover" class="absolute top-full right-0 mt-3 w-80 bg-circles-surface rounded-xl shadow-xl border border-gray-100 z-50 hidden animate-modal-fade-in">
+                            <div class="p-4 border-b border-gray-100">
+                                <h3 class="font-semibold text-circles-text-primary">Notifications</h3>
+                            </div>
+                            <div class="p-2 max-h-80 overflow-y-auto">
+                                <!-- Notification Item -->
+                                <a href="#" class="block p-3 rounded-lg hover:bg-gray-50">
+                                    <p class="text-sm font-medium text-circles-text-primary">Mention in #design-team</p>
+                                    <p class="text-sm text-circles-text-secondary truncate">Maria: "@Suraj check out these mocks..."</p>
+                                    <span class="text-xs text-circles-muted">5m ago</span>
+                                </a>
+                                <!-- Notification Item -->
+                                <a href="#" class="block p-3 rounded-lg hover:bg-gray-50">
+                                    <p class="text-sm font-medium text-circles-text-primary">New post in #wellness-group</p>
+                                    <p class="text-sm text-circles-text-secondary truncate">Alex: "Shared a new article on mindfulness..."</p>
+                                    <span class="text-xs text-circles-muted">1h ago</span>
+                                </a>
+                                <!-- Notification Item -->
+                                <a href="#" class="block p-3 rounded-lg hover:bg-gray-50">
+                                    <p class="text-sm font-medium text-circles-text-primary">Event Reminder</p>
+                                    <p class="text-sm text-circles-text-secondary truncate">Design Team Sync starts in 15 minutes.</p>
+                                    <span class="text-xs text-circles-muted">1h ago</span>
+                                </a>
+                            </div>
+                            <div class="p-2 border-t border-gray-100">
+                                <button class="w-full text-center text-sm font-medium text-circles-primary py-2 hover:bg-gray-50 rounded-lg transition-colors">
+                                    Mark all as read
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Profile Popover -->
+                        <div id="profilePopover" class="absolute top-full right-0 mt-3 w-60 bg-circles-surface rounded-xl shadow-xl border border-gray-100 z-50 hidden animate-modal-fade-in">
+                            <div class="p-2">
+                                <div class="p-3 border-b border-gray-100">
+                                    <p class="text-sm font-semibold text-circles-text-primary">Suraj</p>
+                                    <p class="text-sm text-circles-muted truncate">suraj@example.com</p>
+                                </div>
+                                <div class="mt-1 p-1 space-y-1">
+                                    <a href="#" class="block px-3 py-2 text-sm font-medium text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary rounded-lg transition-colors">Your Profile</a>
+                                    <a href="#" class="block px-3 py-2 text-sm font-medium text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary rounded-lg transition-colors">Account Settings</a>
+                                    <!-- NEW: What's New Button -->
+                                    <button id="whatsNewButton" class="w-full text-left flex justify-between items-center px-3 py-2 text-sm font-medium text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary rounded-lg transition-colors">
+                                        <span>What's New</span>
+                                        <span class="w-2.5 h-2.5 bg-circles-primary rounded-full"></span>
+                                    </button>
+                                    <a href="#" class="block px-3 py-2 text-sm font-medium text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary rounded-lg transition-colors">Help Center</a>
+                                </div>
+                                <div class="mt-1 p-1 border-t border-gray-100">
+                                    <a href="#" class="block px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors">Log Out</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </header>
-
+            
             <!-- Main Content Wrapper -->
             <main class="flex-1 p-6 md:p-10">
                 <!-- Greeting Header -->
                 <section>
                     <h1 class="text-3xl font-bold text-circles-text-primary">Good evening, Suraj 👋</h1>
-                    <p class="text-lg text-circles-text-secondary mt-1">Here’s a quick look at what’s happening across
-                        your circles.</p>
+                    <p class="text-lg text-circles-text-secondary mt-1">Here’s a quick look at what’s happening across your circles.</p>
                 </section>
 
-                <!-- NEW: Quick Draft Section -->
-                <section class="mt-8">
-                    <div class="bg-circles-surface p-4 rounded-2xl shadow-sm border border-gray-100">
-                        <textarea rows="3"
-                            class="w-full p-2 text-base text-circles-text-primary placeholder-circles-muted bg-transparent border-none focus:ring-0 resize-none outline-none"
-                            placeholder="Jot down a quick thought or start a new reflection..."></textarea>
-                        <div class="flex justify-end space-x-3 mt-2">
-                            <button
-                                class="text-sm font-medium text-circles-text-secondary hover:text-circles-text-primary transition-colors">Save
-                                to Notes</button>
-                            <button
-                                class="text-sm font-medium text-circles-primary hover:text-blue-700 transition-colors">Post
-                                to a Circle...</button>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- NEW: My Circles (Horizontal Scroll) -->
-                <section class="mt-10">
-                    <h2 class="text-2xl font-semibold text-circles-text-primary mb-5">Your Circles</h2>
-                    <div class="flex space-x-6 pb-4 overflow-x-auto">
-                        <!-- Circle Card 1 -->
-                        <a href="#" class="flex-shrink-0 w-64 group">
-                            <div
-                                class="bg-circles-surface p-5 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1">
-                                <div class="flex items-center space-x-3 mb-3">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-circles-accent/10 flex items-center justify-center text-lg flex-shrink-0">🎨</span>
-                                    <h3 class="font-semibold text-lg text-circles-text-primary truncate">#design-team
-                                    </h3>
-                                </div>
-                                <p class="text-sm text-circles-text-secondary mb-4 line-clamp-2">All things related to
-                                    the new product design, mocks, and user feedback.</p>
-                                <div class="flex items-center justify-between">
-                                    <span
-                                        class="text-xs font-medium text-circles-accent bg-circles-accent/10 px-2.5 py-0.5 rounded-full">3
-                                        Unread</span>
-                                    <span class="text-xs text-circles-muted">12 Members</span>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- Circle Card 2 -->
-                        <a href="#" class="flex-shrink-0 w-64 group">
-                            <div
-                                class="bg-circles-surface p-5 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1">
-                                <div class="flex items-center space-x-3 mb-3">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-circles-primary/10 flex items-center justify-center text-lg flex-shrink-0">🧘</span>
-                                    <h3 class="font-semibold text-lg text-circles-text-primary truncate">#wellness-group
-                                    </h3>
-                                </div>
-                                <p class="text-sm text-circles-text-secondary mb-4 line-clamp-2">A private space for
-                                    mindfulness, meditation, and healthy habits.</p>
-                                <div class="flex items-center justify-between">
-                                    <span
-                                        class="text-xs font-medium text-circles-muted bg-gray-100 px-2.5 py-0.5 rounded-full">No
-                                        Unread</span>
-                                    <span class="text-xs text-circles-muted">8 Members</span>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- Circle Card 3 -->
-                        <a href="#" class="flex-shrink-0 w-64 group">
-                            <div
-                                class="bg-circles-surface p-5 rounded-2xl shadow-sm border border-gray-100 transition-all duration-300 ease-in-out hover:shadow-md hover:-translate-y-1">
-                                <div class="flex items-center space-x-3 mb-3">
-                                    <span
-                                        class="w-10 h-10 rounded-full bg-circles-secondary/40 flex items-center justify-center text-lg flex-shrink-0">📚</span>
-                                    <h3 class="font-semibold text-lg text-circles-text-primary truncate">#book-club</h3>
-                                </div>
-                                <p class="text-sm text-circles-text-secondary mb-4 line-clamp-2">This month: "The
-                                    Psychology of Money". Next meeting is Nov 2nd.</p>
-                                <div class="flex items-center justify-between">
-                                    <span
-                                        class="text-xs font-medium text-circles-accent bg-circles-accent/10 px-2.5 py-0.5 rounded-full">1
-                                        Unread</span>
-                                    <span class="text-xs text-circles-muted">6 Members</span>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- Circle Card 4 -->
-                        <a href="#" class="flex-shrink-0 w-64 group">
-                            <div
-                                class="bg-circles-surface p-5 rounded-2xl border-2 border-dashed border-gray-200 text-gray-400 hover:border-circles-primary hover:text-circles-primary transition-all duration-300 ease-in-out">
-                                <div class="flex flex-col items-center justify-center h-full text-center">
-                                    <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                                    </svg>
-                                    <h3 class="font-semibold text-base">Create a Circle</h3>
-                                    <p class="text-sm">Start a new private community.</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </section>
-
-
-                <!-- UPDATED: Main Content Grid (Activity + AI) -->
-                <section class="mt-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-                    <!-- Left: Recent Circle Updates -->
+                <!-- REFACTORED: Main Content Grid (Activity + Summary) -->
+                <section class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Left: Recent Activity Feed -->
                     <div class="lg:col-span-2 bg-circles-surface p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <h2 class="text-xl font-semibold mb-5">From Your Circles</h2>
-
+                        <h2 class="text-xl font-semibold mb-5">Recent Activity</h2>
+                        
+                        <!-- RE-POPULATED: Dummy Data -->
                         <div class="space-y-3">
-                            <!-- Placeholder Item 1 -->
-                            <a href="#"
-                                class="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-circles-accent/10 flex-shrink-0 flex items-center justify-center">
-                                    <span class="text-lg">🎨</span>
-                                </div>
+                            <!-- Activity Item 1: New Post -->
+                            <a href="#" class="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/100x100/3E6FF4/FFFFFF?text=M" alt="Maria">
                                 <div class="flex-1">
-                                    <p class="font-medium text-circles-text-primary">#design-team</p>
-                                    <p class="text-sm text-circles-text-secondary truncate">Maria: Just pushed the new
-                                        mockups for the settings page.</p>
+                                    <p class="font-medium text-circles-text-primary">
+                                        Maria posted in <span class="font-semibold text-circles-primary">#design-team</span>
+                                    </p>
+                                    <p class="text-sm text-circles-text-secondary mt-1 bg-gray-50 p-3 rounded-lg border border-gray-200/60">
+                                        Just pushed the new mockups for the settings page. Let me know what you think of the new layout!
+                                    </p>
                                 </div>
                                 <span class="text-xs text-circles-muted ml-auto flex-shrink-0">5m ago</span>
                             </a>
 
-                            <!-- Placeholder Item 2 -->
-                            <a href="#"
-                                class="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-circles-primary/10 flex-shrink-0 flex items-center justify-center">
-                                    <span class="text-lg">🧘</span>
+                            <!-- Activity Item 2: New Event -->
+                            <a href="#" class="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                <div class="w-10 h-10 rounded-full bg-circles-accent/10 flex-shrink-0 flex items-center justify-center">
+                                    <svg class="w-5 h-5 text-circles-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="font-medium text-circles-text-primary">#wellness-group</p>
-                                    <p class="text-sm text-circles-text-secondary truncate">Alex: Thanks for sharing
-                                        that article on mindfulness!</p>
+                                    <p class="font-medium text-circles-text-primary">
+                                        You created an event in <span class="font-semibold text-circles-primary">#design-team</span>
+                                    </p>
+                                    <p class="text-sm text-circles-text-secondary mt-1">
+                                        Event: <span class="font-medium text-circles-text-primary">Design Team Sync</span>
+                                    </p>
+                                    <p class="text-xs text-circles-muted">Starts: Oct 28 @ 11:00 AM</p>
                                 </div>
                                 <span class="text-xs text-circles-muted ml-auto flex-shrink-0">1h ago</span>
                             </a>
 
-                            <!-- Placeholder Item 3 -->
-                            <a href="#"
-                                class="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-circles-secondary/40 flex-shrink-0 flex items-center justify-center">
-                                    <span class="text-lg">📚</span>
-                                </div>
+                            <!-- Activity Item 3: User Joined -->
+                            <a href="#" class="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/100x100/E3DCD2/1C1C1E?text=A" alt="Alex">
                                 <div class="flex-1">
-                                    <p class="font-medium text-circles-text-primary">#book-club</p>
-                                    <p class="text-sm text-circles-text-secondary truncate">You: "Just finished chapter
-                                        4. The main character's..."</p>
+                                    <p class="font-medium text-circles-text-primary">
+                                        Alex joined <span class="font-semibold text-circles-primary">#wellness-group</span>
+                                    </p>
+                                    <p class="text-sm text-circles-text-secondary mt-1">
+                                        Alex was invited by You.
+                                    </p>
                                 </div>
                                 <span class="text-xs text-circles-muted ml-auto flex-shrink-0">3h ago</span>
                             </a>
-
-                            <!-- Placeholder Item 4 -->
-                            <a href="#"
-                                class="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
-                                <div
-                                    class="w-10 h-10 rounded-full bg-red-500/10 flex-shrink-0 flex items-center justify-center">
-                                    <span class="text-lg">🚀</span>
-                                </div>
+                            
+                            <!-- Activity Item 4: New File -->
+                            <a href="#" class="flex items-start space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                <img class="w-10 h-10 rounded-full object-cover" src="https://placehold.co/100x100/3E6FF4/FFFFFF?text=M" alt="Maria">
                                 <div class="flex-1">
-                                    <p class="font-medium text-circles-text-primary">#product-launch</p>
-                                    <p class="text-sm text-circles-text-secondary truncate">Dev Team: Beta v1.2 is now
-                                        live for testing.</p>
+                                    <p class="font-medium text-circles-text-primary">
+                                        Maria added a file to <span class="font-semibold text-circles-primary">#product-launch</span>
+                                    </p>
+                                    <div class="mt-1.5 flex items-center space-x-2 p-3 rounded-lg border border-gray-200/60 bg-gray-50 w-full max-w-sm">
+                                        <svg class="w-6 h-6 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                        <div>
+                                            <p class="text-sm font-medium text-circles-text-primary truncate">Product_Roadmap_v3.pdf</p>
+                                            <p class="text-xs text-circles-muted">1.2 MB</p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <span class="text-xs text-circles-muted ml-auto flex-shrink-0">8h ago</span>
                             </a>
 
-                            <button
-                                class="w-full text-center text-sm font-medium text-circles-primary py-3 hover:bg-gray-50 rounded-lg transition-colors">
+                            <button class="w-full text-center text-sm font-medium text-circles-primary py-3 hover:bg-gray-50 rounded-lg transition-colors">
                                 View all activity...
                             </button>
                         </div>
+
+                        <!-- Empty State (Now hidden) -->
+                        <div id="activityEmptyState" class="text-center py-12 hidden">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-circles-primary/10 mb-4">
+                                <svg class="w-8 h-8 text-circles-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.98 10.099c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-circles-text-primary">Your dashboard is quiet</h3>
+                            <p class="text-sm text-circles-muted mt-1 max-w-xs mx-auto">Start a conversation or create a new circle to get things going.</p>
+                            <button id="emptyStateNewPostButton" class="mt-4 text-sm font-medium text-circles-primary py-2 px-4 hover:bg-gray-50 rounded-lg transition-colors">
+                                Start a new post
+                            </button>
+                        </div>
+
                     </div>
 
-                    <!-- Right: UPDATED AI Insights Column -->
+                    <!-- Right: Summary Column (AI + Widgets) -->
                     <div class="lg:col-span-1">
                         <div class="space-y-6">
-                            <!-- AI Card 1: Weekly Theme -->
+                            
+                            <!-- NEW: Stats Widget -->
+                            <div class="bg-circles-surface p-5 rounded-2xl shadow-sm border border-gray-100">
+                                <h3 class="text-lg font-semibold text-circles-text-primary mb-4">Your Week in Circles</h3>
+                                <div class="flex justify-between space-x-4">
+                                    <div class="text-center">
+                                        <p class="text-2xl font-bold text-circles-primary">12</p>
+                                        <p class="text-xs text-circles-muted uppercase">New Posts</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-2xl font-bold text-circles-primary">4</p>
+                                        <p class="text-xs text-circles-muted uppercase">Active Circles</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-2xl font-bold text-circles-primary">3</p>
+                                        <p class="text-xs text-circles-muted uppercase">AI Summaries</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- AI Card 1: Weekly Theme (with Feedback) -->
                             <div class="bg-circles-surface p-5 rounded-2xl shadow-sm border border-gray-100">
                                 <div class="flex items-center space-x-3 mb-3">
-                                    <svg class="w-6 h-6 text-circles-primary flex-shrink-0" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.657-3.343l.707-.707m12.728 0l.707.707M12 6a6 6 0 100 12 6 6 0 000-12z">
-                                        </path>
-                                    </svg>
+                                    <svg class="w-6 h-6 text-circles-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.657-3.343l.707-.707m12.728 0l.707.707M12 6a6 6 0 100 12 6 6 0 000-12z"></path></svg>
                                     <h3 class="text-lg font-semibold text-circles-text-primary">Weekly Theme</h3>
                                 </div>
-                                <p class="text-sm text-circles-text-secondary">Across your circles, the most common
-                                    topic this week was <strong>"user-centric design"</strong>.</p>
-                                <a href="#" class="text-sm font-medium text-circles-primary mt-3 inline-block">See why
-                                    &rarr;</a>
+                                <p class="text-sm text-circles-text-secondary">Across your circles, the most common topic this week was <strong>"user-centric design"</strong>.</p>
+                                <a href="#" class="text-sm font-medium text-circles-primary mt-3 inline-block">See why &rarr;</a>
+                                <!-- NEW: AI Feedback -->
+                                <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                                    <span class="text-xs text-circles-muted">Was this insight helpful?</span>
+                                    <div class="flex space-x-2">
+                                        <button class="ai-feedback-btn p-1.5 rounded-lg text-circles-muted hover:bg-gray-100 hover:text-circles-primary transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-7.02a2 2 0 01-1.99-1.858L5 7m5 3V3m0 0a2 2 0 10-4 0v4m-3 8a2 2 0 012-2h4.764a2 2 0 001.789-2.894l-3.5-7A2 2 0 008.763 3H4.24A2 2 0 002.25 5v6a2 2 0 002 2h1.5M12 7v4"></path></svg></button>
+                                        <button class="ai-feedback-btn p-1.5 rounded-lg text-circles-muted hover:bg-gray-100 hover:text-circles-primary transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.764 3h7.02a2 2 0 011.99 1.858L21 17m-5-3v6m0 0a2 2 0 104 0v-4m3-8a2 2 0 01-2 2H8.764a2 2 0 00-1.789 2.894l3.5 7A2 2 0 0011.237 21h4.524a2 2 0 001.99-1.858L19 11a2 2 0 00-2-2h-1.5m-4 5V7"></path></svg></button>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- AI Card 2: Unread Summaries -->
                             <div class="bg-circles-surface p-5 rounded-2xl shadow-sm border border-gray-100">
                                 <h3 class="text-lg font-semibold text-circles-text-primary mb-3">Unread Summaries</h3>
                                 <div class="space-y-2">
-                                    <a href="#"
-                                        class="block text-sm font-medium text-circles-text-secondary hover:text-circles-primary transition-colors">Summary
-                                        for #design-team</a>
-                                    <a href="#"
-                                        class="block text-sm font-medium text-circles-text-secondary hover:text-circles-primary transition-colors">Summary
-                                        for #product-launch</a>
+                                    <a href="#" class="block text-sm font-medium text-circles-text-secondary hover:text-circles-primary transition-colors">Summary for #design-team</a>
+                                    <a href="#" class="block text-sm font-medium text-circles-text-secondary hover:text-circles-primary transition-colors">Summary for #product-launch</a>
                                 </div>
                             </div>
 
                             <!-- AI Card 3: Conversation Starter -->
                             <div class="bg-circles-surface p-5 rounded-2xl shadow-sm border border-gray-100">
-                                <h3 class="text-lg font-semibold text-circles-text-primary mb-3">Conversation Starter
-                                </h3>
-                                <p class="text-sm text-circles-text-secondary">You haven't posted in
-                                    <strong>#wellness-group</strong> in 5 days. Want to share an article?
-                                </p>
-                                <button class="text-sm font-medium text-circles-primary mt-3">Start a post...</button>
+                                <h3 class="text-lg font-semibold text-circles-text-primary mb-3">Conversation Starter</h3>
+                                <p class="text-sm text-circles-text-secondary">You haven't posted in <strong>#wellness-group</strong> in 5 days. Want to share an article?</p>
+                                <button id="startPostAiButton" class="text-sm font-medium text-circles-primary mt-3">Start a post...</button>
                             </div>
-                        </div>
-                    </div>
 
-                </section>
-
-                <!-- UPDATED: Widgets Section -->
-                <section class="mt-10">
-                    <h2 class="text-2xl font-semibold text-circles-text-primary mb-6">Your Spaces</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                        <!-- Widget 1: Upcoming Events -->
-                        <div
-                            class="bg-circles-surface p-6 rounded-2xl shadow-sm border border-gray-100 transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-md">
-                            <h3 class="text-lg font-semibold text-circles-text-primary mb-4">Upcoming Events</h3>
-                            <div class="space-y-3">
-                                <div class="flex space-x-3">
-                                    <div
-                                        class="w-10 h-10 rounded-lg bg-circles-accent/10 text-circles-accent font-bold flex flex-col items-center justify-center leading-none flex-shrink-0">
-                                        <span class="text-xs">OCT</span>
-                                        <span class="text-lg">28</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-sm">Design Team Sync</p>
-                                        <p class="text-xs text-circles-muted">11:00 AM - #design-team</p>
-                                    </div>
-                                </div>
-                                <div class="flex space-x-3">
-                                    <div
-                                        class="w-10 h-10 rounded-lg bg-gray-100 text-circles-text-secondary font-bold flex flex-col items-center justify-center leading-none flex-shrink-0">
-                                        <span class="text-xs">NOV</span>
-                                        <span class="text-lg">02</span>
-                                    </div>
-                                    <div>
-                                        <p class="font-medium text-sm">Book Club Kick-off</p>
-                                        <p class="text-xs text-circles-muted">6:00 PM - #book-club</p>
+                            <!-- Widget 1: Upcoming Events (Moved here) -->
+                            <div class="bg-circles-surface p-6 rounded-2xl shadow-sm border border-gray-100">
+                                <h3 class="text-lg font-semibold text-circles-text-primary mb-4">Upcoming Events</h3>
+                                <div class="space-y-3">
+                                    <div class="flex space-x-3">
+                                        <div class="w-10 h-10 rounded-lg bg-circles-accent/10 text-circles-accent font-bold flex flex-col items-center justify-center leading-none flex-shrink-0">
+                                            <span class="text-xs">OCT</span>
+                                            <span class="text-lg">28</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-sm">Design Team Sync</p>
+                                            <p class="text-xs text-circles-muted">11:00 AM - #design-team</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Widget 2: NEW Recent Library -->
-                        <div
-                            class="bg-circles-surface p-6 rounded-2xl shadow-sm border border-gray-100 transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-md">
-                            <h3 class="text-lg font-semibold text-circles-text-primary mb-4">Recent Library</h3>
-                            <div class="space-y-3">
-                                <!-- Library Item -->
-                                <a href="#" class="flex items-center space-x-3 group">
-                                    <svg class="w-5 h-5 text-circles-muted group-hover:text-circles-primary transition-colors flex-shrink-0"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.102 1.101m-.758 4.899l-5.656 5.656">
-                                        </path>
-                                    </svg>
-                                    <div>
-                                        <p
-                                            class="text-sm font-medium text-circles-text-secondary group-hover:text-circles-primary transition-colors truncate">
-                                            Mindfulness Article</p>
-                                        <p class="text-xs text-circles-muted">Saved from #wellness-group</p>
-                                    </div>
-                                </a>
-                                <!-- Library Item -->
-                                <a href="#" class="flex items-center space-x-3 group">
-                                    <svg class="w-5 h-5 text-circles-muted group-hover:text-circles-primary transition-colors flex-shrink-0"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1.586-1.586a2 2 0 00-2.828 0L6 14m6-6l.001-.001M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg>
-                                    <div>
-                                        <p
-                                            class="text-sm font-medium text-circles-text-secondary group-hover:text-circles-primary transition-colors truncate">
-                                            settings_mockups_v3.png</p>
-                                        <p class="text-xs text-circles-muted">Shared in #design-team</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Widget 3: Private Notes -->
-                        <div
-                            class="bg-circles-surface p-6 rounded-2xl shadow-sm border border-gray-100 transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-md">
-                            <h3 class="text-lg font-semibold text-circles-text-primary mb-4">Private Notes</h3>
-                            <div
-                                class="p-3 bg-gray-50 rounded-lg border border-gray-200/60 hover:bg-gray-100 transition-colors">
-                                <p class="text-sm text-circles-text-secondary truncate">Draft: My thoughts on the new
-                                    product roadmap and its impact on...</p>
-                                <span class="text-xs text-circles-muted">Saved 20m ago</span>
-                            </div>
-                            <button class="text-sm font-medium text-circles-primary mt-4">View all notes &rarr;</button>
-                        </div>
-
                     </div>
                 </section>
-
+                
             </main>
 
         </div>
 
         <!-- Floating Action Button (New Conversation) -->
-        <button id="newPostFabButton"
-            class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-circles-primary text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-105 hover:shadow-xl z-30">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
-                </path>
-            </svg>
+        <button id="newPostFabButton" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-circles-primary text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-105 hover:shadow-xl z-30">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
         </button>
     </div>
 
-    <!-- "New Circle" Modal (for Sidebar) -->
-    <!-- ... (Modal 1 code remains unchanged) ... -->
-    <div id="newCircleModal" class="fixed inset-0 w-full h-full flex items-center justify-center z-40 hidden">
-        <!-- Overlay -->
-        <div id="newCircleModalOverlay" class="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-sm"></div>
+    <!-- 
+    ================================================================================
+    MOBILE SIDEBAR & MODALS
+    ================================================================================
+    -->
 
-        <!-- Modal Content -->
-        <div
-            class="relative z-50 bg-circles-surface w-full max-w-lg p-8 rounded-2xl shadow-xl animate-modal-fade-in mx-4">
+    <!-- Mobile Sidebar Overlay -->
+    <div id="mobileSidebarOverlay" class="fixed inset-0 bg-black/50 z-30 hidden md:hidden"></div>
+    
+    <!-- Mobile Sidebar -->
+    <aside id="mobileSidebar" class="fixed top-0 left-0 w-64 flex flex-col h-full bg-circles-surface p-5 z-40 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <!-- ... [Mobile sidebar content remains the same] ... -->
+        <!-- Logo & Close Button -->
+        <div class="flex justify-between items-center h-10 mb-6">
+            <div class="text-2xl font-bold text-circles-text-primary px-2">
+                Circles
+            </div>
+            <button id="closeMobileMenuButton" class="text-circles-muted p-2 -mr-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        
+        <!-- Nav Links (Mobile) -->
+        <nav class="space-y-1" id="mobileSidebarNav">
+             <a href="#" class="sidebar-link-mobile bg-circles-primary/10 text-circles-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6-4a1 1 0 001-1v-1a1 1 0 10-2 0v1a1 1 0 001 1z"></path></svg>
+                <span>Home</span>
+            </a>
+            <a href="#" class="sidebar-link-mobile text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.657-3.343l.707-.707m12.728 0l.707.707M12 6a6 6 0 100 12 6 6 0 000-12z"></path></svg>
+                <span>AI Reflections</span>
+            </a>
+            <a href="#" class="sidebar-link-mobile text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253"></path></svg>
+                <span>Library</span>
+            </a>
+            <a href="#" class="sidebar-link-mobile text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></M10.325 4.317z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <!-- My Circles list in Sidebar (Mobile) -->
+        <div class="mt-6 flex-1 flex flex-col overflow-y-auto" id="mobileSidebarCircles">
+            <h3 class="px-3 text-xs font-semibold text-circles-muted uppercase tracking-wider mb-2">My Circles</h3>
+            <div class="space-y-1">
+                <a href="#" class="sidebar-link-mobile flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 group">
+                    <span class="w-8 h-8 rounded-full bg-circles-accent/10 flex items-center justify-center text-sm flex-shrink-0">🎨</span>
+                    <span class="text-sm font-medium text-circles-text-secondary group-hover:text-circles-text-primary truncate">#design-team</span>
+                    <span class="text-xs font-medium text-circles-accent bg-circles-accent/10 px-2 py-0.5 rounded-full ml-auto">3</span>
+                </a>
+                <a href="#" class="sidebar-link-mobile flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 group">
+                    <span class="w-8 h-8 rounded-full bg-circles-primary/10 flex items-center justify-center text-sm flex-shrink-0">🧘</span>
+                    <span class="text-sm font-medium text-circles-text-secondary group-hover:text-circles-text-primary truncate">#wellness-group</span>
+                </a>
+                <a href="#" class="sidebar-link-mobile flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 group">
+                    <span class="w-8 h-8 rounded-full bg-circles-secondary/40 flex items-center justify-center text-sm flex-shrink-0">📚</span>
+                    <span class="text-sm font-medium text-circles-text-secondary group-hover:text-circles-text-primary truncate">#book-club</span>
+                    <span class="text-xs font-medium text-circles-accent bg-circles-accent/10 px-2 py-0.5 rounded-full ml-auto">1</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Bottom Button (Mobile) -->
+        <div class="mt-auto pt-4">
+            <button id="newCircleMobileButton" class="w-full bg-circles-primary text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-in-out hover:bg-blue-700 hover:shadow-md flex items-center justify-center space-x-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                <span>New Circle</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- "New Circle" Modal -->
+    <div id="newCircleModal" class="fixed inset-0 w-full h-full flex items-center justify-center z-50 hidden">
+        <div id="newCircleModalOverlay" class="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-sm"></div>
+        <div class="relative z-50 bg-circles-surface w-full max-w-lg p-8 rounded-2xl shadow-xl animate-modal-fade-in mx-4">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold text-circles-text-primary">Create a new Circle</h2>
                 <button id="closeNewCircleModalButton" class="text-circles-muted hover:text-circles-text-primary">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-
-            <form action="#" class="space-y-4">
+            <form id="newCircleForm" class="space-y-4">
+                <!-- ... [form fields] ... -->
                 <div>
-                    <label for="circleName" class="block text-sm font-medium text-circles-text-secondary mb-1">Circle
-                        Name</label>
-                    <input type="text" id="circleName" placeholder="e.g. #book-club"
-                        class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200" />
+                    <label for="circleName" class="block text-sm font-medium text-circles-text-secondary mb-1">Circle Name</label>
+                    <input type="text" id="circleName" placeholder="e.g. #book-club" class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200" />
                 </div>
                 <div>
-                    <label for="circlePurpose"
-                        class="block text-sm font-medium text-circles-text-secondary mb-1">Purpose (Optional)</label>
-                    <textarea id="circlePurpose" rows="3" placeholder="What's the focus of this circle?"
-                        class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200 resize-none"></textarea>
+                    <label for="circlePurpose" class="block text-sm font-medium text-circles-text-secondary mb-1">Purpose (Optional)</label>
+                    <textarea id="circlePurpose" rows="3" placeholder="What's the focus of this circle?" class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200 resize-none"></textarea>
                 </div>
                 <div>
-                    <label for="circleInvites" class="block text-sm font-medium text-circles-text-secondary mb-1">Invite
-                        Members (by email)</label>
-                    <input type="email" id="circleInvites" placeholder="friend@example.com, colleague@example.com"
-                        class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200" />
+                    <label for="circleInvites" class="block text-sm font-medium text-circles-text-secondary mb-1">Invite Members (by email)</label>
+                    <input type="email" id="circleInvites" placeholder="friend@example.com, colleague@example.com" class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200" />
                 </div>
-
                 <div class="flex justify-end space-x-3 pt-4">
-                    <button id="cancelNewCircleModalButton" type="button"
-                        class="bg-gray-100 text-circles-text-secondary px-5 py-2.5 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200">
+                    <button id="cancelNewCircleModalButton" type="button" class="bg-gray-100 text-circles-text-secondary px-5 py-2.5 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200">
                         Cancel
                     </button>
-                    <button type="submit"
-                        class="bg-circles-primary text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
+                    <!-- Added ID for simulation -->
+                    <button id="createCircleSubmitButton" type="submit" class="bg-circles-primary text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
                         Create Circle
                     </button>
                 </div>
@@ -587,33 +532,21 @@
         </div>
     </div>
 
-    <!-- "New Post" Modal (for Floating Action Button) -->
-    <!-- ... (Modal 2 code remains unchanged) ... -->
-    <div id="newPostModal" class="fixed inset-0 w-full h-full flex items-center justify-center z-40 hidden">
-        <!-- Overlay -->
+    <!-- "New Post" Modal -->
+    <div id="newPostModal" class="fixed inset-0 w-full h-full flex items-center justify-center z-50 hidden">
         <div id="newPostModalOverlay" class="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-sm"></div>
-
-        <!-- Modal Content -->
-        <div
-            class="relative z-50 bg-circles-surface w-full max-w-lg p-8 rounded-2xl shadow-xl animate-modal-fade-in mx-4">
+        <div class="relative z-50 bg-circles-surface w-full max-w-lg p-8 rounded-2xl shadow-xl animate-modal-fade-in mx-4">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-2xl font-bold text-circles-text-primary">Start a new conversation</h2>
                 <button id="closeNewPostModalButton" class="text-circles-muted hover:text-circles-text-primary">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-
-            <form action="#" class="space-y-4">
+            <form id="newPostForm" class="space-y-4">
+                <!-- ... [form fields] ... -->
                 <div>
-                    <label for="circleSelect" class="block text-sm font-medium text-circles-text-secondary mb-1">Post in
-                        Circle</label>
-                    <select id="circleSelect"
-                        class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200 appearance-none">
-                        <!-- These options would be dynamically populated -->
+                    <label for="circleSelect" class="block text-sm font-medium text-circles-text-secondary mb-1">Post in Circle</label>
+                    <select id="circleSelect" class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200 appearance-none">
                         <option value="design-team">#design-team</option>
                         <option value="wellness-group">#wellness-group</option>
                         <option value="book-club">#book-club</option>
@@ -621,25 +554,19 @@
                     </select>
                 </div>
                 <div>
-                    <label for="postSubject" class="block text-sm font-medium text-circles-text-secondary mb-1">Subject
-                        (Optional)</label>
-                    <input type="text" id="postSubject" placeholder="e.g. New mockups"
-                        class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200" />
+                    <label for="postSubject" class="block text-sm font-medium text-circles-text-secondary mb-1">Subject (Optional)</label>
+                    <input type="text" id="postSubject" placeholder="e.g. New mockups" class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200" />
                 </div>
                 <div>
-                    <label for="postMessage"
-                        class="block text-sm font-medium text-circles-text-secondary mb-1">Message</label>
-                    <textarea id="postMessage" rows="4" placeholder="Share your thoughts..."
-                        class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200 resize-none"></textarea>
+                    <label for="postMessage" class="block text-sm font-medium text-circles-text-secondary mb-1">Message</label>
+                    <textarea id="postMessage" rows="4" placeholder="Share your thoughts..." class="w-full px-4 py-2.5 rounded-lg bg-gray-100 border border-gray-200 focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200 resize-none"></textarea>
                 </div>
-
                 <div class="flex justify-end space-x-3 pt-4">
-                    <button id="cancelNewPostModalButton" type="button"
-                        class="bg-gray-100 text-circles-text-secondary px-5 py-2.5 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200">
+                    <button id="cancelNewPostModalButton" type="button" class="bg-gray-100 text-circles-text-secondary px-5 py-2.5 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200">
                         Cancel
                     </button>
-                    <button type="submit"
-                        class="bg-circles-primary text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
+                    <!-- Added ID for simulation -->
+                    <button id="createPostSubmitButton" type="submit" class="bg-circles-primary text-white px-5 py-2.5 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200">
                         Post Conversation
                     </button>
                 </div>
@@ -647,84 +574,317 @@
         </div>
     </div>
 
+    <!-- "Command Palette" Modal -->
+    <div id="commandPaletteModal" class="fixed inset-0 w-full h-full flex items-start justify-center z-50 hidden pt-20">
+        <!-- ... [Command palette content remains the same] ... -->
+        <div id="commandPaletteOverlay" class="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-sm"></div>
+        <div class="relative z-50 bg-circles-surface w-full max-w-xl rounded-2xl shadow-xl animate-modal-fade-in mx-4 overflow-hidden">
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-4">
+                    <svg class="w-5 h-5 text-circles-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </span>
+                <input type="text" id="commandInput" placeholder="Go to circle, person, or file..." class="w-full pl-12 pr-4 py-4 text-lg bg-transparent border-b border-gray-100 focus:ring-0 outline-none" />
+            </div>
+            <div class="p-2 max-h-96 overflow-y-auto">
+                <h4 class="px-3 py-2 text-xs font-semibold text-circles-muted uppercase">Go to Circle</h4>
+                <a href="#" class="command-item flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-gray-50">
+                    <span class="w-7 h-7 rounded-full bg-circles-accent/10 flex items-center justify-center text-sm flex-shrink-0">🎨</span>
+                    <span class="text-sm font-medium text-circles-text-primary">#design-team</span>
+                </a>
+                <a href="#" class="command-item flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-gray-50">
+                    <span class="w-7 h-7 rounded-full bg-circles-primary/10 flex items-center justify-center text-sm flex-shrink-0">🧘</span>
+                    <span class="text-sm font-medium text-circles-text-primary">#wellness-group</span>
+                </a>
+                <h4 class="px-3 pt-4 pb-2 text-xs font-semibold text-circles-muted uppercase">Actions</h4>
+                <a href="#" class="command-item flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-gray-50">
+                    <svg class="w-5 h-5 text-circles-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                    <span class="text-sm font-medium text-circles-text-primary">New Post...</span>
+                </a>
+                 <a href="#" class="command-item flex items-center space-x-3 px-3 py-2.5 rounded-lg hover:bg-gray-50">
+                    <svg class="w-5 h-5 text-circles-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0..."></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span class="text-sm font-medium text-circles-text-primary">Go to Settings</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: "What's New" Modal -->
+    <div id="whatsNewModal" class="fixed inset-0 w-full h-full flex items-center justify-center z-50 hidden">
+        <div id="whatsNewModalOverlay" class="absolute inset-0 w-full h-full bg-black/50 backdrop-blur-sm"></div>
+        <div class="relative z-50 bg-circles-surface w-full max-w-lg p-8 rounded-2xl shadow-xl animate-modal-fade-in mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-circles-text-primary">What's New in Circles</h2>
+                <button id="closeWhatsNewModal" class="text-circles-muted hover:text-circles-text-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-sm max-w-none text-circles-text-secondary max-h-96 overflow-y-auto">
+                <span class="inline-block bg-circles-primary/10 text-circles-primary text-xs font-bold px-3 py-1 rounded-full">v1.2.0</span>
+                <h3 class="text-circles-text-primary">Command Palette is here!</h3>
+                <p>You can now navigate Circles at the speed of thought. Press <strong>⌘K</strong> (or Ctrl+K on Windows) to jump to any circle, start a new post, or access your settings in seconds.</p>
+                
+                <h3 class="text-circles-text-primary">AI Feedback</h3>
+                <p>We've added a quick way for you to tell us how our AI insights are doing. Let us know if a summary was helpful or not so we can improve!</p>
+                
+                <h3 class="text-circles-text-primary">Dashboard Stats</h3>
+                <p>Your "Home" dashboard now includes a "Your Week in Circles" card to give you a quick summary of your activity.</p>
+            </div>
+            <button id="closeWhatsNewModalButton" class="mt-6 w-full bg-gray-100 text-circles-text-secondary px-5 py-2.5 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200">
+                Got it
+            </button>
+        </div>
+    </div>
+
+    <!-- NEW: Toast Notification -->
+    <div id="toastNotification" class="fixed bottom-5 left-1/2 -translate-x-1/2 bg-circles-text-primary text-white px-5 py-3 rounded-xl shadow-lg flex items-center space-x-3 z-50 hidden">
+        <svg class="w-5 h-5 text-circles-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        <span id="toastMessage" class="text-sm font-medium"></span>
+    </div>
+    
     <!-- JavaScript for Modal Functionality -->
-    <!-- ... (JavaScript remains unchanged) ... -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- "New Circle" Modal Elements ---
-            const newCircleModal = document.getElementById('newCircleModal');
-            const newCircleModalOverlay = document.getElementById('newCircleModalOverlay');
-            const sidebarButton = document.getElementById('newCircleSidebarButton');
-            const closeNewCircleModalButton = document.getElementById('closeNewCircleModalButton');
-            const cancelNewCircleModalButton = document.getElementById('cancelNewCircleModalButton');
+      document.addEventListener('DOMContentLoaded', () => {
+        // --- Popover State ---
+        let isProfilePopoverOpen = false;
+        let isNotificationsPopoverOpen = false;
+        let toastTimeout;
 
-            // --- "New Post" Modal Elements ---
-            const newPostModal = document.getElementById('newPostModal');
-            const newPostModalOverlay = document.getElementById('newPostModalOverlay');
-            const fabButton = document.getElementById('newPostFabButton'); // Renamed from fabButton
-            const closeNewPostModalButton = document.getElementById('closeNewPostModalButton');
-            const cancelNewPostModalButton = document.getElementById('cancelNewPostModalButton');
+        // --- All Modal/Popover Elements ---
+        const newCircleModal = document.getElementById('newCircleModal');
+        const newCircleModalOverlay = document.getElementById('newCircleModalOverlay');
+        const sidebarButton = document.getElementById('newCircleSidebarButton');
+        const mobileSidebarButton = document.getElementById('newCircleMobileButton');
+        const closeNewCircleModalButton = document.getElementById('closeNewCircleModalButton');
+        const cancelNewCircleModalButton = document.getElementById('cancelNewCircleModalButton');
+        const newCircleForm = document.getElementById('newCircleForm');
+        const createCircleSubmitButton = document.getElementById('createCircleSubmitButton');
+
+        const newPostModal = document.getElementById('newPostModal');
+        const newPostModalOverlay = document.getElementById('newPostModalOverlay');
+        const fabButton = document.getElementById('newPostFabButton');
+        const closeNewPostModalButton = document.getElementById('closeNewPostModalButton');
+        const cancelNewPostModalButton = document.getElementById('cancelNewPostModalButton');
+        const startPostAiButton = document.getElementById('startPostAiButton'); 
+        const emptyStateNewPostButton = document.getElementById('emptyStateNewPostButton');
+        const newPostForm = document.getElementById('newPostForm');
+        const createPostSubmitButton = document.getElementById('createPostSubmitButton');
+
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const closeMobileMenuButton = document.getElementById('closeMobileMenuButton');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const mobileSidebarOverlay = document.getElementById('mobileSidebarOverlay');
+
+        const notificationsButton = document.getElementById('notificationsButton');
+        const notificationsPopover = document.getElementById('notificationsPopover');
+        const profileButton = document.getElementById('profileButton');
+        const profilePopover = document.getElementById('profilePopover');
+
+        const commandPaletteModal = document.getElementById('commandPaletteModal');
+        const commandPaletteOverlay = document.getElementById('commandPaletteOverlay');
+        const searchBar = document.getElementById('searchBar');
+        const commandInput = document.getElementById('commandInput');
+
+        const whatsNewModal = document.getElementById('whatsNewModal');
+        const whatsNewModalOverlay = document.getElementById('whatsNewModalOverlay');
+        const whatsNewButton = document.getElementById('whatsNewButton');
+        const closeWhatsNewModal = document.getElementById('closeWhatsNewModal');
+        const closeWhatsNewModalButton = document.getElementById('closeWhatsNewModalButton');
+
+        const toastNotification = document.getElementById('toastNotification');
+        const toastMessage = document.getElementById('toastMessage');
+
+        // --- Helper Functions to Show/Hide ---
+        const show = (el) => el && el.classList.remove('hidden');
+        const hide = (el) => el && el.classList.add('hidden');
+        const toggle = (el) => el && el.classList.toggle('hidden');
+
+        // --- NEW: Toast Notification ---
+        function showToast(message) {
+          if (toastTimeout) clearTimeout(toastTimeout);
+          if (toastNotification && toastMessage) {
+            toastMessage.textContent = message;
+            show(toastNotification);
+            toastNotification.classList.remove('animate-toast-out');
+            toastNotification.classList.add('animate-toast-in');
+            
+            toastTimeout = setTimeout(() => {
+              toastNotification.classList.remove('animate-toast-in');
+              toastNotification.classList.add('animate-toast-out');
+              setTimeout(() => hide(toastNotification), 300);
+            }, 3000); // Show for 3 seconds
+          }
+        }
+
+        // --- Mobile Sidebar ---
+        function showMobileSidebar() {
+          if (mobileSidebar) {
+            show(mobileSidebar);
+            show(mobileSidebarOverlay);
+            mobileSidebar.classList.remove('animate-slide-out-left');
+            mobileSidebar.classList.add('animate-slide-in-left');
+          }
+        }
+        function hideMobileSidebar() {
+          if (mobileSidebar) {
+            hide(mobileSidebarOverlay);
+            mobileSidebar.classList.remove('animate-slide-in-left');
+            mobileSidebar.classList.add('animate-slide-out-left');
+            setTimeout(() => hide(mobileSidebar), 300); // Hide after animation
+          }
+        }
+        if (mobileMenuButton) mobileMenuButton.addEventListener('click', showMobileSidebar);
+        if (closeMobileMenuButton) closeMobileMenuButton.addEventListener('click', hideMobileSidebar);
+        if (mobileSidebarOverlay) mobileSidebarOverlay.addEventListener('click', hideMobileSidebar);
 
 
-            // --- "New Circle" Modal Functions ---
-            function showNewCircleModal() {
-                if (newCircleModal) newCircleModal.classList.remove('hidden');
-            }
-            function hideNewCircleModal() {
-                if (newCircleModal) newCircleModal.classList.add('hidden');
-            }
+        // --- Popover Logic ---
+        function toggleProfilePopover() {
+          isProfilePopoverOpen = !isProfilePopoverOpen;
+          toggle(profilePopover);
+          if (isProfilePopoverOpen && isNotificationsPopoverOpen) {
+            isNotificationsPopoverOpen = false;
+            hide(notificationsPopover);
+          }
+        }
+        function toggleNotificationsPopover() {
+          isNotificationsPopoverOpen = !isNotificationsPopoverOpen;
+          toggle(notificationsPopover);
+          if (isNotificationsPopoverOpen && isProfilePopoverOpen) {
+            isProfilePopoverOpen = false;
+            hide(profilePopover);
+          }
+        }
+        if (profileButton) profileButton.addEventListener('click', toggleProfilePopover);
+        if (notificationsButton) notificationsButton.addEventListener('click', toggleNotificationsPopover);
 
-            // --- "New Post" Modal Functions ---
-            function showNewPostModal() {
-                if (newPostModal) newPostModal.classList.remove('hidden');
-            }
-            function hideNewPostModal() {
-                if (newPostModal) newPostModal.classList.add('hidden');
-            }
+
+        // --- "New Circle" Modal ---
+        const showNewCircleModal = () => show(newCircleModal);
+        const hideNewCircleModal = () => hide(newCircleModal);
+        if (sidebarButton) sidebarButton.addEventListener('click', showNewCircleModal);
+        if (mobileSidebarButton) mobileSidebarButton.addEventListener('click', () => {
+          hideMobileSidebar();
+          showNewCircleModal();
+        });
+        if (closeNewCircleModalButton) closeNewCircleModalButton.addEventListener('click', hideNewCircleModal);
+        if (cancelNewCircleModalButton) cancelNewCircleModalButton.addEventListener('click', hideNewCircleModal);
+        if (newCircleModalOverlay) newCircleModalOverlay.addEventListener('click', hideNewCircleModal);
+        // Simulate form submission
+        if (newCircleForm) newCircleForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            hideNewCircleModal();
+            showToast('New circle created successfully!');
+        });
+
+        
+        // --- "New Post" Modal ---
+        const showNewPostModal = () => show(newPostModal);
+        const hideNewPostModal = () => hide(newPostModal);
+        if (fabButton) fabButton.addEventListener('click', showNewPostModal);
+        if (startPostAiButton) startPostAiButton.addEventListener('click', showNewPostModal);
+        if (emptyStateNewPostButton) emptyStateNewPostButton.addEventListener('click', showNewPostModal);
+        if (closeNewPostModalButton) closeNewPostModalButton.addEventListener('click', hideNewPostModal);
+        if (cancelNewPostModalButton) cancelNewPostModalButton.addEventListener('click', hideNewPostModal);
+        if (newPostModalOverlay) newPostModalOverlay.addEventListener('click', hideNewPostModal);
+        // Simulate form submission
+        if (newPostForm) newPostForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            hideNewPostModal();
+            showToast('Conversation posted!');
+        });
 
 
-            // --- Event Listeners for "New Circle" Modal ---
-            if (sidebarButton) {
-                sidebarButton.addEventListener('click', showNewCircleModal);
-            }
-            if (closeNewCircleModalButton) {
-                closeNewCircleModalButton.addEventListener('click', hideNewCircleModal);
-            }
-            if (cancelNewCircleModalButton) {
-                cancelNewCircleModalButton.addEventListener('click', hideNewCircleModal);
-            }
-            if (newCircleModalOverlay) {
-                newCircleModalOverlay.addEventListener('click', hideNewCircleModal);
-            }
+        // --- "Command Palette" Modal ---
+        const showCommandPalette = () => {
+          show(commandPaletteModal);
+          commandInput.focus();
+        };
+        const hideCommandPalette = () => hide(commandPaletteModal);
+        if (searchBar) searchBar.addEventListener('click', showCommandPalette);
+        if (commandPaletteOverlay) commandPaletteOverlay.addEventListener('click', hideCommandPalette);
 
-            // --- Event Listeners for "New Post" Modal ---
-            if (fabButton) {
-                fabButton.addEventListener('click', showNewPostModal); // Changed to showNewPostModal
-            }
-            if (closeNewPostModalButton) {
-                closeNewPostModalButton.addEventListener('click', hideNewPostModal);
-            }
-            if (cancelNewPostModalButton) {
-                cancelNewPostModalButton.addEventListener('click', hideNewPostModal);
-            }
-            if (newPostModalOverlay) {
-                newPostModalOverlay.addEventListener('click', hideNewPostModal);
-            }
+        // --- "What's New" Modal ---
+        const showWhatsNewModal = () => show(whatsNewModal);
+        const hideWhatsNewModal = () => hide(whatsNewModal);
+        if (whatsNewButton) whatsNewButton.addEventListener('click', () => {
+            showWhatsNewModal();
+            if (isProfilePopoverOpen) toggleProfilePopover(); // Close profile popover
+        });
+        if (closeWhatsNewModal) closeWhatsNewModal.addEventListener('click', hideWhatsNewModal);
+        if (closeWhatsNewModalButton) closeWhatsNewModalButton.addEventListener('click', hideWhatsNewModal);
+        if (whatsNewModalOverlay) whatsNewModalOverlay.addEventListener('click', hideWhatsNewModal);
 
-            // Optional: Close modals with Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (!newCircleModal.classList.contains('hidden')) {
-                        hideNewCircleModal();
-                    }
-                    if (!newPostModal.classList.contains('hidden')) {
-                        hideNewPostModal();
-                    }
+        // --- Global Keyboard Listeners ---
+        document.addEventListener('keydown', (e) => {
+          // Escape key
+          if (e.key === 'Escape') {
+            hideNewCircleModal();
+            hideNewPostModal();
+            hideCommandPalette();
+            hideMobileSidebar();
+            hideWhatsNewModal();
+            if (isProfilePopoverOpen) toggleProfilePopover();
+            if (isNotificationsPopoverOpen) toggleNotificationsPopover();
+          }
+          // Command + K
+          if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+            e.preventDefault();
+            showCommandPalette();
+          }
+        });
+
+        // --- Sidebar Active State Management ---
+        function handleSidebarClick(e) {
+          e.preventDefault();
+          const clickedLink = e.currentTarget;
+
+          // Find all links in both navs
+          const allLinks = document.querySelectorAll('.sidebar-link, .sidebar-link-mobile');
+          
+          // Remove active classes from all links
+          allLinks.forEach(link => {
+            link.classList.remove('bg-circles-primary/10', 'text-circles-primary');
+            link.classList.add('text-circles-text-secondary', 'hover:bg-gray-50', 'hover:text-circles-text-primary');
+          });
+
+          // Add active classes to the clicked link (and its mobile/desktop counterpart)
+          const href = clickedLink.getAttribute('href'); // In a real app, you'd use a unique ID
+          const matchingLinks = document.querySelectorAll(`.sidebar-link[href="${href}"], .sidebar-link-mobile[href="${href}"]`);
+          
+          matchingLinks.forEach(link => {
+            link.classList.add('bg-circles-primary/10', 'text-circles-primary');
+            link.classList.remove('text-circles-text-secondary', 'hover:bg-gray-50', 'hover:text-circles-text-primary');
+          });
+
+          // If it was a mobile click, close the sidebar
+          if (clickedLink.classList.contains('sidebar-link-mobile')) {
+            hideMobileSidebar();
+          }
+        }
+
+        document.querySelectorAll('.sidebar-link, .sidebar-link-mobile').forEach(link => {
+          link.addEventListener('click', handleSidebarClick);
+        });
+
+        // --- AI Feedback Button State ---
+        document.querySelectorAll('.ai-feedback-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const parent = e.currentTarget.parentElement;
+                // Remove 'active' from sibling
+                const sibling = e.currentTarget.parentElement.querySelector(e.currentTarget.tagName === 'BUTTON' ? 'button:not(#' + e.currentTarget.id + ')' : 'button');
+                if (sibling) {
+                    sibling.classList.remove('bg-circles-primary/10', 'text-circles-primary');
+                    sibling.classList.add('text-circles-muted', 'hover:bg-gray-100');
                 }
+                // Add 'active' to clicked
+                e.currentTarget.classList.add('bg-circles-primary/10', 'text-circles-primary');
+                e.currentTarget.classList.remove('text-circles-muted', 'hover:bg-gray-100');
             });
         });
+
+      });
     </script>
 
 </body>
-
 </html>
+
