@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Circles - Our Philosophy</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'circles-primary': '#3E6FF4',
+              'circles-secondary': '#E3DCD2',
+              'circles-bg': '#F8F9FA',
+              'circles-surface': '#FFFFFF',
+              'circles-text-primary': '#1C1C1E',
+              'circles-text-secondary': '#6B7280',
+              'circles-accent': '#47A76A',
+            },
+            animation: {
+              // Subtle float animation for hero background elements
+              'float': 'float 6s ease-in-out infinite',
+              // Fade-in-up animation for scroll triggers
+              'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-15px)' },
+              },
+              'fade-in-up': {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- Inline JS for Scroll Animations -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Intersection Observer for scroll-based animations
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // Add animation class when element is in view
+              entry.target.classList.add('animate-fade-in-up');
+              entry.target.classList.remove('opacity-0');
+              // Optional: Unobserve after animation
+              // observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+        // Observe all elements with the 'scroll-animate' class
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+          el.classList.add('opacity-0'); // Start elements as hidden
+          observer.observe(el);
+        });
+      });
+    </script>
+</head>
+<body class="font-sans bg-circles-bg text-circles-text-primary antialiased">
+
+    <!-- Floating "Join Beta" Button (Mobile Only) -->
+    <a href="#cta" class="fixed bottom-5 right-5 bg-circles-primary text-white px-5 py-3 rounded-xl shadow-lg z-40 transition-transform duration-300 hover:scale-105 md:hidden">
+      Join Beta
+    </a>
+
+    <!-- 1. Header (Sticky Navbar) -->
+    <header class="sticky top-0 w-full bg-circles-bg/80 backdrop-blur-md z-30 border-b border-gray-100">
+      <nav class="container mx-auto max-w-6xl px-4 py-4 flex justify-between items-center">
+        <!-- Left: Logo -->
+        <a href="circles_landing_page.html" class="text-2xl font-bold text-circles-text-primary">
+          Circles
+        </a>
+        
+        <!-- Right: Links (Desktop) -->
+        <div class="hidden md:flex items-center space-x-6">
+          <a href="circles_landing_page.html" class="text-circles-text-secondary hover:text-circles-primary transition-colors duration-300 ease-in-out">Home</a>
+          <a href="#vision" class="text-circles-text-secondary hover:text-circles-primary transition-colors duration-300 ease-in-out">Vision</a>
+          <a href="#ai" class="text-circles-text-secondary hover:text-circles-primary transition-colors duration-300 ease-in-out">AI</a>
+          <a href="#privacy" class="text-circles-text-secondary hover:text-circles-primary transition-colors duration-300 ease-in-out">Privacy</a>
+          <a href="#design" class="text-circles-text-secondary hover:text-circles-primary transition-colors duration-300 ease-in-out">Design</a>
+          <a href="#contact" class="text-circles-text-secondary hover:text-circles-primary transition-colors duration-300 ease-in-out">Contact</a>
+        </div>
+        
+        <!-- Mobile Menu Button (Icon only) -->
+        <div class="md:hidden">
+          <button class="text-circles-text-primary p-1">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+      <!-- 2. Hero Section — “Built for Depth” -->
+      <section id="vision" class="relative min-h-[80vh] flex items-center justify-center py-20 md:py-32 overflow-hidden bg-gradient-to-b from-circles-bg via-circles-secondary/20 to-circles-secondary/40">
+        <!-- Background Floating Circles -->
+        <div class="absolute inset-0 z-0 opacity-20 md:opacity-10">
+          <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-circles-primary/10 rounded-full animate-float border border-circles-primary/20"></div>
+          <div class="absolute bottom-1/4 right-1/4 w-48 h-48 bg-circles-accent/10 rounded-full animate-float [animation-delay:-3s] border border-circles-accent/20"></div>
+          <div class="absolute top-1/2 right-1/3 w-20 h-20 bg-circles-primary/10 rounded-full animate-float [animation-delay:-1.5s] border border-circles-primary/20"></div>
+        </div>
+
+        <div class="container mx-auto max-w-4xl px-4 text-center z-10 scroll-animate">
+          <h1 class="text-4xl md:text-6xl font-bold text-circles-text-primary mb-6 leading-tight">
+            Circles isn’t about growing your network — it’s about growing meaning.
+          </h1>
+          <p class="text-lg md:text-xl text-circles-text-secondary max-w-2xl mx-auto">
+            In a world chasing numbers, Circles builds smaller, safer spaces powered by quiet intelligence.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3. Section — “Our Philosophy” -->
+      <section id="philosophy" class="py-20 md:py-32 bg-circles-surface border-t border-gray-100">
+        <div class="container mx-auto max-w-6xl px-4">
+          <div class="text-center mb-16 scroll-animate">
+            <h2 class="text-3xl md:text-4xl font-bold text-circles-text-primary mb-4">Our Philosophy</h2>
+            <p class="text-lg text-circles-text-secondary max-w-xl mx-auto">The core beliefs that guide our design.</p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Card 1: Small is Strong -->
+            <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm transition-all duration-500 ease-in-out hover:shadow-lg hover:-translate-y-1 scroll-animate">
+              <span class="text-3xl" role="img" aria-label="Seedling">🌱</span>
+              <h3 class="text-xl font-semibold text-circles-text-primary mt-4 mb-2">Small is Strong</h3>
+              <p class="text-circles-text-secondary">We believe intimacy and focus build real value. Genuine connection happens in trusted, focused groups.</p>
+            </div>
+            <!-- Card 2: AI as Support -->
+            <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm transition-all duration-500 ease-in-out hover:shadow-lg hover:-translate-y-1 scroll-animate" style="animation-delay: 200ms;">
+              <span class="text-3xl" role="img" aria-label="Brain">🧠</span>
+              <h3 class="text-xl font-semibold text-circles-text-primary mt-4 mb-2">AI as Support, Not Spotlight</h3>
+              <p class="text-circles-text-secondary">AI should assist conversations, not dominate them. It's a quiet partner that helps you find clarity.</p>
+            </div>
+            <!-- Card 3: Privacy is Default -->
+            <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm transition-all duration-500 ease-in-out hover:shadow-lg hover:-translate-y-1 scroll-animate" style="animation-delay: 400ms;">
+              <span class="text-3xl" role="img" aria-label="Shield">🛡️</span>
+              <h3 class="text-xl font-semibold text-circles-text-primary mt-4 mb-2">Privacy is Default</h3>
+              <p class="text-circles-text-secondary">Your data belongs to your circle. No feeds, no ads, no cross-platform tracking. Ever.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Section — “Our AI Ethos” -->
+      <section id="ai" class="py-20 md:py-32 bg-circles-secondary">
+        <div class="container mx-auto max-w-4xl px-4">
+          <div class="text-center mb-12 scroll-animate">
+            <h2 class="text-3xl md:text-4xl font-bold text-circles-text-primary mb-4">AI that listens — not interrupts.</h2>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Left: Text -->
+            <div class="text-lg text-circles-text-primary space-y-6 scroll-animate">
+              <p>Circles uses AI to quietly summarize, highlight key insights, and help members reflect on conversations. It’s designed to reduce noise, not create more.</p>
+              <p class="font-semibold">It observes only what’s shared inside your circle. It learns patterns to make your group wiser — not predictable for advertisers.</p>
+              <p>Think of it as the perfect note-taker, helping you catch up without ever getting in the way.</p>
+            </div>
+            
+            <!-- Right: AI Summary Card Mockup -->
+            <div class="flex justify-center scroll-animate" style="animation-delay: 200ms;">
+              <div class="bg-circles-surface border border-gray-100 shadow-xl p-6 rounded-xl w-full max-w-sm">
+                <p class="font-semibold text-circles-primary mb-3 flex items-center">
+                  <span class="mr-2" role="img" aria-label="Robot">🤖</span>
+                  This Week's Key Insights
+                </p>
+                <ul class="list-disc list-inside text-left text-circles-text-secondary space-y-2">
+                  <li>Decision made on Q4 budget.</li>
+                  <li>New project 'Phoenix' proposed.</li>
+                  <li>Debate on remote work policy.</li>
+                  <li class="text-circles-accent">Action: @Anna to send final draft.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 5. Section — “Design with Intention” -->
+      <section id="design" class="py-20 md:py-32 bg-circles-bg overflow-hidden relative">
+         <!-- Background Floating Circles -->
+        <div class="absolute inset-0 z-0 opacity-10">
+          <div class="absolute -top-10 left-10 w-48 h-48 bg-circles-accent/10 rounded-full animate-float [animation-delay:-1s] border border-circles-accent/20"></div>
+          <div class="absolute -bottom-10 right-10 w-64 h-64 bg-circles-primary/10 rounded-full animate-float [animation-delay:-4s] border border-circles-primary/20"></div>
+        </div>
+
+        <div class="container mx-auto max-w-3xl px-4 text-center z-10 relative scroll-animate">
+          <h2 class="text-3xl md:text-4xl font-bold text-circles-text-primary mb-6">Design with Intention</h2>
+          <div class="prose prose-lg text-circles-text-secondary mx-auto">
+            <p>Every interaction in Circles is designed for calm. We use thoughtful spacing, subtle feedback, and deliberate color choices to reduce cognitive load. Our goal is to make digital spaces feel human again — intentional, focused, and respectful of your time.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Section — “Privacy Promise” -->
+      <section id="privacy" class="py-20 md:py-32 bg-circles-surface border-t border-gray-100">
+        <div class="container mx-auto max-w-5xl px-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <!-- Left: Icon -->
+            <div class="text-center scroll-animate">
+              <svg class="w-32 h-32 text-circles-primary mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+            </div>
+            <!-- Right: Text -->
+            <div class="scroll-animate" style="animation-delay: 150ms;">
+              <h2 class="text-3xl md:text-4xl font-bold text-circles-text-primary mb-4">Your thoughts, your circle, your data.</h2>
+              <p class="text-lg text-circles-text-secondary mb-8">We never train models on your private content. Your data never leaves your circle — period. We make money from subscriptions, not from selling your attention or your information.</p>
+              <a href="#" class="bg-circles-primary text-white px-7 py-3 rounded-xl font-medium transition-all duration-300 ease-in-out hover:bg-blue-700 hover:shadow-md">
+                Read our Privacy Commitment
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. Call to Action Section -->
+      <section id="cta" class="py-20 md:py-32 bg-gradient-to-t from-circles-primary/5 via-circles-primary/10 to-circles-bg">
+        <div class="container mx-auto max-w-2xl px-4 text-center scroll-animate">
+          <h2 class="text-3xl md:text-5xl font-bold text-circles-text-primary mb-6">
+            Join the movement for meaningful connection.
+          </h2>
+          <p class="text-lg text-circles-text-secondary mb-10">Now in private beta.</p>
+          <a href="circles_landing_page.html" class="bg-circles-primary text-white px-8 py-4 rounded-xl font-medium text-lg transition-all duration-300 ease-in-out hover:bg-blue-700 hover:shadow-lg hover:scale-105">
+            Start your first Circle
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 8. Footer -->
+    <footer id="contact" class="py-16 bg-circles-surface border-t border-gray-100">
+      <div class="container mx-auto max-w-6xl px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+        <div class="mb-4 md:mb-0">
+          <span class="text-lg font-semibold text-circles-text-primary">Circles</span>
+          <p class="text-sm text-circles-text-secondary mt-1">© 2025 — Designed for Depth.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-circles-text-secondary">
+          <a href="circles_landing_page.html" class="hover:text-circles-primary transition-colors duration-300">Home</a>
+          <a href="#" class="hover:text-circles-primary transition-colors duration-300">About</a>
+          <a href="#privacy" class="hover:text-circles-primary transition-colors duration-300">Privacy</a>
+          <a href="#" class="hover:text-circles-primary transition-colors duration-300">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+</body>
+</html>
