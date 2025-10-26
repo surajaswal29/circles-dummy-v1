@@ -1,145 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rust Programming Guide</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circles Project Pages</title>
+  <style>
+    :root {
+      --primary: #3E6FF4;
+      --accent: #47A76A;
+      --text: #1C1C1E;
+      --text-soft: #6B7280;
+      --bg: #F8F9FA;
+      --surface: #FFFFFF;
+      --border: #E5E7EB;
+      --spacing: 2rem;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: var(--spacing);
+      text-align: center;
+      margin-bottom: var(--spacing);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .subtitle {
+      color: var(--text-soft);
+      margin-top: 0.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: var(--spacing) 0;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-color: var(--primary);
+    }
+
+    .card h2 {
+      margin: 0 0 0.5rem 0;
+      color: var(--primary);
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--bg);
+      color: var(--text-soft);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: var(--spacing);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      margin-top: var(--spacing);
+    }
+  </style>
 </head>
+
 <body>
+  <header class="header">
+    <h1>Circles Project Showcase</h1>
+    <p class="subtitle">Available Pages & Resources</p>
+  </header>
 
-<h1>Rust Programming Guide</h1>
+  <main class="container">
+    <div class="grid">
+      <a href="./landing-page.html" class="card">
+        <h2>Landing Page</h2>
+        <p>Main landing page showcasing Circles features and benefits.</p>
+        <span class="tag">Main Page</span>
+      </a>
 
-<h2>Contents</h2>
+      <a href="./about-page.html" class="card">
+        <h2>About Page</h2>
+        <p>Learn about our mission, vision, and the team behind Circles.</p>
+        <span class="tag">Information</span>
+      </a>
 
-<h3>Basic Topics</h3>
-<ol>
-  <li><a href="#variables-and-mutability">Variables and Mutability</a></li>
-  <li><a href="#functions">Functions</a></li>
-  <li><a href="#loops">Loops</a></li>
-  <li><a href="#control-statements">Control Statements</a></li>
-  <li><a href="#structs-similar-to-classes-in-oop">Structs (Similar to Classes in OOP)</a></li>
-  <li><a href="#operators">Operators</a></li>
-</ol>
+      <a href="./dashboard.html" class="card">
+        <h2>Dashboard</h2>
+        <p>Interactive user dashboard with Circle management features.</p>
+        <span class="tag">Application</span>
+      </a>
+    </div>
+  </main>
 
-<h3>Intermediate Topics</h3>
-<ol>
-  <li><a href="#error-handling">Error Handling</a>
-    <ul>
-      <li><code>Result</code> and <code>Option</code> types</li>
-      <li>Custom error types</li>
-    </ul>
-  </li>
-  <li><a href="#testing">Testing</a>
-    <ul>
-      <li>Unit tests</li>
-      <li>Integration tests</li>
-      <li>Test-driven development (TDD)</li>
-    </ul>
-  </li>
-  <li><a href="#traits-and-generics">Traits and Generics</a>
-    <ul>
-      <li>Defining and implementing traits</li>
-      <li>Generic types and functions</li>
-      <li>Trait bounds</li>
-    </ul>
-  </li>
-  <li><a href="#concurrency">Concurrency</a>
-    <ul>
-      <li>Threads and <code>std::thread</code></li>
-      <li>Message passing with channels</li>
-      <li>Atomic operations</li>
-    </ul>
-  </li>
-  <li><a href="#smart-pointers-and-ownership">Smart Pointers and Ownership</a>
-    <ul>
-      <li><code>Box</code>, <code>Rc</code>, <code>Arc</code></li>
-      <li><code>RefCell</code> and <code>Mutex</code></li>
-      <li>Understanding <code>Deref</code> and <code>Drop</code></li>
-    </ul>
-  </li>
-  <li><a href="#collections-and-iterators">Collections and Iterators</a>
-    <ul>
-      <li>Advanced use of collections</li>
-      <li>Custom iterators</li>
-      <li>Functional programming techniques</li>
-    </ul>
-  </li>
-  <li><a href="#macros">Macros</a>
-    <ul>
-      <li>Declarative macros (<code>macro_rules!</code>)</li>
-      <li>Procedural macros</li>
-    </ul>
-  </li>
-  <li><a href="#modules-and-packages">Modules and Packages</a>
-    <ul>
-      <li>Code organization with modules</li>
-      <li>Managing large projects</li>
-      <li>Visibility and re-exporting</li>
-    </ul>
-  </li>
-</ol>
-
-<h3>Advanced Topics</h3>
-<ol>
-  <li><a href="#asynchronous-programming">Asynchronous Programming</a>
-    <ul>
-      <li><code>async</code> and <code>await</code></li>
-      <li>Asynchronous I/O applications</li>
-      <li>Async runtimes like <code>tokio</code> and <code>async-std</code></li>
-    </ul>
-  </li>
-  <li><a href="#advanced-type-system-features">Advanced Type System Features</a>
-    <ul>
-      <li>Lifetimes and lifetime elision</li>
-      <li>Variance and coherence</li>
-      <li>Advanced traits and associated types</li>
-    </ul>
-  </li>
-  <li><a href="#foreign-function-interface-ffi">Foreign Function Interface (FFI)</a>
-    <ul>
-      <li>Interfacing with C</li>
-      <li>Using <code>unsafe</code> code</li>
-      <li>Resource management across languages</li>
-    </ul>
-  </li>
-  <li><a href="#compiler-plugins-and-custom-derives">Compiler Plugins and Custom Derives</a>
-    <ul>
-      <li>Creating compiler plugins</li>
-      <li>Writing custom derive macros</li>
-    </ul>
-  </li>
-  <li><a href="#webassembly">WebAssembly</a>
-    <ul>
-      <li>Compiling to WebAssembly</li>
-      <li>Integrating with web applications</li>
-    </ul>
-  </li>
-  <li><a href="#embedded-systems-programming">Embedded Systems Programming</a>
-    <ul>
-      <li>Software for embedded systems</li>
-      <li>Cross-compiling and hardware interaction</li>
-    </ul>
-  </li>
-  <li><a href="#advanced-concurrency-and-parallelism">Advanced Concurrency and Parallelism</a>
-    <ul>
-      <li>Lock-free programming</li>
-      <li>Advanced concurrency models</li>
-    </ul>
-  </li>
-  <li><a href="#performance-optimization">Performance Optimization</a>
-    <ul>
-      <li>Profiling and benchmarking</li>
-      <li>Performance tuning</li>
-    </ul>
-  </li>
-  <li><a href="#domain-specific-languages-dsls">Domain-Specific Languages (DSLs)</a>
-    <ul>
-      <li>Design and implementation of DSLs</li>
-    </ul>
-  </li>
-</ol>
-
-<p>This comprehensive guide provides a pathway through the foundational, intermediate, and advanced aspects of Rust programming. Each section is designed to build upon the previous, allowing a gradual and thorough exploration of Rust's capabilities.</p>
-
+  <footer>
+    <p>All pages are optimized for modern browsers. Click any card to view the page.</p>
+  </footer>
 </body>
+
 </html>

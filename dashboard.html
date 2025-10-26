@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circles - Your Dashboard</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'circles-primary': '#3E6FF4',
+                        'circles-secondary': '#E3DCD2',
+                        'circles-bg': '#F8F9FA',
+                        'circles-surface': '#FFFFFF',
+                        'circles-text-primary': '#1C1C1E',
+                        'circles-text-secondary': '#6B7280',
+                        'circles-accent': '#47A76A',
+                        'circles-muted': '#9CA3AF',
+                    },
+                    animation: {
+                        // Fade-in animation for page load
+                        'fade-in': 'fade-in 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        'fade-in': {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-sans bg-circles-bg text-circles-text-primary antialiased">
+
+    <div class="flex h-screen overflow-hidden bg-circles-bg">
+
+        <!-- 2. Sidebar (Left-aligned, collapsible) -->
+        <!-- On mobile, this would be toggled by the hamburger menu -->
+        <aside class="hidden md:flex w-64 flex-col h-full bg-circles-surface border-r border-gray-100 p-5 z-10">
+            <!-- Logo -->
+            <div class="text-2xl font-bold text-circles-text-primary h-10 flex items-center px-2 mb-6">
+                Circles
+            </div>
+
+            <!-- Nav Links -->
+            <nav class="flex-1 space-y-1">
+                <a href="#"
+                    class="bg-circles-primary/10 text-circles-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6-4a1 1 0 001-1v-1a1 1 0 10-2 0v1a1 1 0 001 1z">
+                        </path>
+                    </svg>
+                    <span>Home</span>
+                </a>
+                <a href="#"
+                    class="text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                        </path>
+                    </svg>
+                    <span>My Circles</span>
+                </a>
+                <a href="#"
+                    class="text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.657-3.343l.707-.707m12.728 0l.707.707M12 6a6 6 0 100 12 6 6 0 000-12z">
+                        </path>
+                    </svg>
+                    <span>AI Reflections</span>
+                </a>
+                <a href="#"
+                    class="text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5s3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18s-3.332.477-4.5 1.253">
+                        </path>
+                    </svg>
+                    <span>Library</span>
+                </a>
+                <a href="#"
+                    class="text-circles-text-secondary hover:bg-gray-50 hover:text-circles-text-primary font-medium rounded-lg flex items-center space-x-3 px-3 py-2.5 transition-colors duration-200">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                            </M10.325 4.317z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+            </nav>
+
+            <!-- Bottom Button -->
+            <div class="mt-auto">
+                <button
+                    class="w-full bg-circles-primary text-white px-4 py-3 rounded-xl font-medium transition-all duration-300 ease-in-out hover:bg-blue-700 hover:shadow-md flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    <span>New Circle</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- 3. Main Content Area (Scrollable) -->
+        <div class="flex-1 flex flex-col h-screen overflow-y-auto animate-fade-in">
+
+            <!-- 1. Top Navbar (Inside Main Area) -->
+            <header class="sticky top-0 w-full bg-circles-bg/90 backdrop-blur-md z-20 border-b border-gray-100">
+                <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-4 flex justify-between items-center">
+
+                    <!-- Mobile Hamburger Menu Button -->
+                    <div class="md:hidden">
+                        <button class="text-circles-text-secondary p-2 -ml-2">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="hidden md:block w-full max-w-sm lg:max-w-md">
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                                <svg class="w-5 h-5 text-circles-muted" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </span>
+                            <input type="search" placeholder="Search your circles..."
+                                class="w-full pl-10 pr-4 py-2.5 rounded-lg bg-gray-100 border border-transparent focus:bg-white focus:border-circles-primary/50 focus:ring-1 focus:ring-circles-primary/50 outline-none transition-all duration-200" />
+                        </div>
+                    </div>
+
+                    <!-- Right Side Icons -->
+                    <div class="flex items-center space-x-3 sm:space-x-5">
+                        <button
+                            class="text-circles-muted hover:text-circles-text-primary p-1 transition-colors duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                                </path>
+                            </svg>
+                        </button>
+                        <button
+                            class="text-circles-muted hover:text-circles-text-primary p-1 transition-colors duration-200">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+                                    </M10.325 4.317z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </button>
+                        <button class="block">
+                            <img class="w-9 h-9 rounded-full border-2 border-circles-primary/30 object-cover"
+                                src="https://placehold.co/100x100/E3DCD2/1C1C1E?text=S" alt="Suraj">
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Wrapper -->
+            <main class="flex-1 p-6 md:p-10">
+                <!-- Greeting Header -->
+                <section>
+                    <h1 class="text-3xl font-bold text-circles-text-primary">Good evening, Suraj 👋</h1>
+                    <p class="text-lg text-circles-text-secondary mt-1">Here’s a quick look at what’s happening across
+                        your circles.</p>
+                </section>
+
+                <!-- 3. Main Content Grid -->
+                <section class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                    <!-- Left: Recent Circle Updates -->
+                    <div class="lg:col-span-2 bg-circles-surface p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl font-semibold mb-5">Recent Activity</h2>
+
+                        <div class="space-y-3">
+                            <!-- Placeholder Item 1 -->
+                            <a href="#"
+                                class="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-circles-accent/10 flex-shrink-0 flex items-center justify-center">
+                                    <span class="text-lg">🎨</span>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium text-circles-text-primary">#design-team</p>
+                                    <p class="text-sm text-circles-text-secondary truncate">Maria: Just pushed the new
+                                        mockups for the settings page.</p>
+                                </div>
+                                <span class="text-xs text-circles-muted ml-auto flex-shrink-0">5m ago</span>
+                            </a>
+
+                            <!-- Placeholder Item 2 -->
+                            <a href="#"
+                                class="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-circles-primary/10 flex-shrink-0 flex items-center justify-center">
+                                    <span class="text-lg">🧘</span>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium text-circles-text-primary">#wellness-group</p>
+                                    <p class="text-sm text-circles-text-secondary truncate">Alex: Thanks for sharing
+                                        that article on mindfulness!</p>
+                                </div>
+                                <span class="text-xs text-circles-muted ml-auto flex-shrink-0">1h ago</span>
+                            </a>
+
+                            <!-- Placeholder Item 3 -->
+                            <a href="#"
+                                class="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-circles-secondary/40 flex-shrink-0 flex items-center justify-center">
+                                    <span class="text-lg">📚</span>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium text-circles-text-primary">#book-club</p>
+                                    <p class="text-sm text-circles-text-secondary truncate">You: "Just finished chapter
+                                        4. The main character's..."</p>
+                                </div>
+                                <span class="text-xs text-circles-muted ml-auto flex-shrink-0">3h ago</span>
+                            </a>
+
+                            <!-- Placeholder Item 4 -->
+                            <a href="#"
+                                class="flex items-center space-x-4 p-4 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-red-500/10 flex-shrink-0 flex items-center justify-center">
+                                    <span class="text-lg">🚀</span>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium text-circles-text-primary">#product-launch</p>
+                                    <p class="text-sm text-circles-text-secondary truncate">Dev Team: Beta v1.2 is now
+                                        live for testing.</p>
+                                </div>
+                                <span class="text-xs text-circles-muted ml-auto flex-shrink-0">8h ago</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right: AI Summary Widget -->
+                    <div
+                        class="lg:col-span-1 bg-gradient-to-br from-circles-primary to-blue-600 text-white p-6 rounded-2xl shadow-lg flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-semibold">Weekly Reflection</h2>
+                            <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m12.728 0l-.707.707M12 21v-1m-6.657-3.343l.707-.707m12.728 0l.707.707M12 6a6 6 0 100 12 6 6 0 000-12z">
+                                </path>
+                            </svg>
+                        </div>
+                        <p class="font-light mb-5 text-white/90">You contributed most to <strong>#design-team</strong>
+                            and <strong>#book-club</strong> this week. Your key themes were 'user-centric design' and
+                            'stoic philosophy'.</p>
+                        <button
+                            class="mt-auto w-full bg-white/20 hover:bg-white/30 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-200">
+                            View Full Insight
+                        </button>
+                    </div>
+
+                </section>
+
+                <!-- 4. Widgets Section -->
+                <section class="mt-10">
+                    <h2 class="text-2xl font-semibold text-circles-text-primary mb-6">Your Spaces</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                        <!-- Widget 1: Upcoming Events -->
+                        <div
+                            class="bg-circles-surface p-6 rounded-2xl shadow-sm border border-gray-100 transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-md">
+                            <h3 class="text-lg font-semibold text-circles-text-primary mb-4">Upcoming Events</h3>
+                            <div class="space-y-3">
+                                <div class="flex space-x-3">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-circles-accent/10 text-circles-accent font-bold flex flex-col items-center justify-center leading-none flex-shrink-0">
+                                        <span class="text-xs">OCT</span>
+                                        <span class="text-lg">28</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-sm">Design Team Sync</p>
+                                        <p class="text-xs text-circles-muted">11:00 AM - #design-team</p>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-3">
+                                    <div
+                                        class="w-10 h-10 rounded-lg bg-gray-100 text-circles-text-secondary font-bold flex flex-col items-center justify-center leading-none flex-shrink-0">
+                                        <span class="text-xs">NOV</span>
+                                        <span class="text-lg">02</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium text-sm">Book Club Kick-off</p>
+                                        <p class="text-xs text-circles-muted">6:00 PM - #book-club</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Widget 2: AI Snapshot -->
+                        <div
+                            class="bg-circles-surface p-6 rounded-2xl shadow-sm border border-gray-100 transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-md">
+                            <h3 class="text-lg font-semibold text-circles-text-primary mb-4">AI Snapshot</h3>
+                            <p class="text-circles-text-secondary">You have <strong
+                                    class="text-circles-primary">3</strong> unread summaries and <strong
+                                    class="text-circles-primary">1</strong> pending reflection.</p>
+                            <button class="text-sm font-medium text-circles-primary mt-4">Review now &rarr;</button>
+                        </div>
+
+                        <!-- Widget 3: Private Notes -->
+                        <div
+                            class="bg-circles-surface p-6 rounded-2xl shadow-sm border border-gray-100 transition-transform duration-300 ease-in-out hover:scale-[1.02] hover:shadow-md">
+                            <h3 class="text-lg font-semibold text-circles-text-primary mb-4">Private Notes</h3>
+                            <div class="p-3 bg-gray-50 rounded-lg border border-gray-200/60">
+                                <p class="text-sm text-circles-text-secondary truncate">Draft: My thoughts on the new
+                                    product roadmap and its impact on...</p>
+                                <span class="text-xs text-circles-muted">Saved 20m ago</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- 5. Empty State (This would be shown conditionally) -->
+                <!-- 
+                <section class="mt-10 text-center bg-circles-surface border-2 border-dashed border-gray-200 rounded-2xl p-16">
+                    <h2 class="text-2xl font-semibold text-circles-text-primary">Welcome to your calm space</h2>
+                    <p class="text-lg text-circles-text-secondary mt-2 max-w-md mx-auto">You haven’t created or joined any circles yet. Start one with people who matter.</p>
+                    <button class="mt-6 bg-circles-primary text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 ease-in-out hover:bg-blue-700 hover:shadow-md">
+                        + Create your first Circle
+                    </button>
+                </section>
+                -->
+
+            </main>
+
+        </div>
+
+        <!-- Floating Action Button (New Conversation) -->
+        <button
+            class="fixed bottom-6 right-6 md:bottom-10 md:right-10 bg-circles-primary text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-105 hover:shadow-xl z-30">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6">
+                </path>
+            </svg>
+        </button>
+    </div>
+
+</body>
+
+</html>
